@@ -7,6 +7,7 @@ package shoesShop;
 
 import javax.swing.JPanel;
 import shoesShop.Views.HeadMainScreen;
+import shoesShop.Views.MainPanel;
 
 /**
  *
@@ -16,4 +17,5 @@ public class App {
     public static void main(String [] args){
         
         HeadMainScreen scr=new HeadMainScreen();
+        
 }}
