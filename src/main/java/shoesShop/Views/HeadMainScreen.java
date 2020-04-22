@@ -49,10 +49,17 @@ public class HeadMainScreen extends javax.swing.JFrame  {
         JMenuItem shoeItem = new JMenuItem("Модель взуття");
         shoeItem.setFont(font);
         newMenu.add(shoeItem);
-         
-        JMenuItem producerItem = new JMenuItem("Виробник");
-        producerItem.setFont(font);
-        newMenu.add(producerItem);
+         shoeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                     frame.setVisible(false);
+             NewShoesCreator newShoesFrame = new NewShoesCreator();
+             newShoesFrame.setVisible(true);
+            }
+         });
+//        JMenuItem producerItem = new JMenuItem("Виробник");
+//        producerItem.setFont(font);
+//        newMenu.add(producerItem);
           JMenuItem staffItem = new JMenuItem("Продавець");
         staffItem.setFont(font);
         newMenu.add(staffItem);

@@ -28,37 +28,37 @@ public class NewShoesCreator extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        crNewCat = new javax.swing.JRadioButton();
+        existCat = new javax.swing.JComboBox<>();
+        crCatName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        isMen = new javax.swing.JCheckBox();
+        isWomen = new javax.swing.JCheckBox();
+        isChild = new javax.swing.JCheckBox();
+        seasonButn = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        crNewModel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel1.setText("Оберіть категорію:");
 
-        jRadioButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
-        jRadioButton1.setText("Створити нову категорію:");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        crNewCat.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        crNewCat.setText("Створити нову категорію:");
+        crNewCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                crNewCatActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setSelectedIndex(-1);
+        existCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        existCat.setSelectedIndex(-1);
 
-        jTextField1.setEnabled(false);
+        crCatName.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jLabel2.setText("Оберіть склад моделі:");
@@ -73,25 +73,25 @@ public class NewShoesCreator extends javax.swing.JFrame {
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox3.setSelectedIndex(-1);
 
-        jCheckBox1.setText("Чоловічі");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        isMen.setText("Чоловічі");
+        isMen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                isMenActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Жіночі");
+        isWomen.setText("Жіночі");
 
-        jCheckBox3.setText("Дитячі");
+        isChild.setText("Дитячі");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Зима", "Весна", "Літо", "Осінь", "Демі", "Інше" }));
-        jComboBox4.setSelectedIndex(-1);
+        seasonButn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Зима", "Весна", "Літо", "Осінь", "Демі", "Інше" }));
+        seasonButn.setSelectedIndex(-1);
 
         jLabel4.setText("Сезон");
         jLabel4.setToolTipText("");
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
-        jButton1.setText("Створити");
+        crNewModel.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
+        crNewModel.setText("Створити");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,32 +104,32 @@ public class NewShoesCreator extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(isWomen, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
-                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(isMen, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(isChild, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(seasonButn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(94, 94, 94)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(crNewModel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(crCatName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(crNewCat, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGap(23, 23, 23)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(existCat, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
@@ -158,11 +158,11 @@ public class NewShoesCreator extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(existCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1)
+                        .addComponent(crNewCat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(crCatName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -170,26 +170,33 @@ public class NewShoesCreator extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(isMen)
+                    .addComponent(isChild)
+                    .addComponent(seasonButn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(isWomen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(crNewModel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void crNewCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crNewCatActionPerformed
+        if(crNewCat.isSelected()){
+            existCat.setEnabled(false);
+            crCatName.setEnabled(true);
+        }
+        else{
+            crCatName.setEnabled(false);
+             existCat.setEnabled(true);
+        }
+    }//GEN-LAST:event_crNewCatActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void isMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isMenActionPerformed
+        
+    }//GEN-LAST:event_isMenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,19 +234,19 @@ public class NewShoesCreator extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField crCatName;
+    private javax.swing.JRadioButton crNewCat;
+    private javax.swing.JButton crNewModel;
+    private javax.swing.JComboBox<String> existCat;
+    private javax.swing.JCheckBox isChild;
+    private javax.swing.JCheckBox isMen;
+    private javax.swing.JCheckBox isWomen;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> seasonButn;
     // End of variables declaration//GEN-END:variables
 }

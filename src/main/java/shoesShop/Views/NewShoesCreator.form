@@ -30,23 +30,23 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jCheckBox2" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="isWomen" min="-2" pref="77" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jComboBox3" min="-2" pref="62" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox1" min="-2" pref="77" max="-2" attributes="0"/>
+                                      <Component id="isMen" min="-2" pref="77" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jCheckBox3" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="isChild" min="-2" pref="77" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jComboBox4" min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="seasonButn" min="-2" pref="51" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="94" pref="94" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" pref="162" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="crNewModel" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -56,14 +56,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="crCatName" min="-2" pref="116" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jRadioButton1" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="crNewCat" min="-2" pref="160" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Component id="existCat" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -105,11 +105,11 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="existCat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="crNewCat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="crCatName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -119,14 +119,14 @@
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="isMen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="isChild" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="seasonButn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+              <Component id="isWomen" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="crNewModel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -141,7 +141,7 @@
         <Property name="text" type="java.lang.String" value="&#x41e;&#x431;&#x435;&#x440;&#x456;&#x442;&#x44c; &#x43a;&#x430;&#x442;&#x435;&#x433;&#x43e;&#x440;&#x456;&#x44e;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+    <Component class="javax.swing.JRadioButton" name="crNewCat">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic UI" size="10" style="0"/>
@@ -149,10 +149,10 @@
         <Property name="text" type="java.lang.String" value="&#x421;&#x442;&#x432;&#x43e;&#x440;&#x438;&#x442;&#x438; &#x43d;&#x43e;&#x432;&#x443; &#x43a;&#x430;&#x442;&#x435;&#x433;&#x43e;&#x440;&#x456;&#x44e;:"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crNewCatActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="existCat">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -168,7 +168,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="crCatName">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -222,25 +222,25 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="isMen">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x427;&#x43e;&#x43b;&#x43e;&#x432;&#x456;&#x447;&#x456;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="isMenActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+    <Component class="javax.swing.JCheckBox" name="isWomen">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x416;&#x456;&#x43d;&#x43e;&#x447;&#x456;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+    <Component class="javax.swing.JCheckBox" name="isChild">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x414;&#x438;&#x442;&#x44f;&#x447;&#x456;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox4">
+    <Component class="javax.swing.JComboBox" name="seasonButn">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="6">
@@ -264,7 +264,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="crNewModel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Yu Gothic UI" size="12" style="1"/>

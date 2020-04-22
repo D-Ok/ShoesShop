@@ -190,6 +190,11 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButton2.setText("Назад");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,8 +261,8 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
                                         .addGap(0, 63, Short.MAX_VALUE)))
                                 .addContainerGap())
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,6 +364,10 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
