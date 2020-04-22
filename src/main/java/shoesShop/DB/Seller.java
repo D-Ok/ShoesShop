@@ -5,7 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
 import shoesShop.Exceptions.ArgumentException;
 import shoesShop.Tools.Security;
@@ -96,7 +101,7 @@ public class Seller {
 		return DBConnector.isUnique(command);
 	}
 	
-public String getName() {
+	public String getName() {
 		return name;
 	}
 	
@@ -216,7 +221,7 @@ public String getName() {
 		return result;
 	}
 	
-     public static Seller getSellerByNum(int num) { 
+     public static Seller getSeller(int num) { 
 		Seller s = null;
 		String command = "SELECT * FROM `sellers`"
 				+ "WHERE n_employee = '"+num+"'";
@@ -295,6 +300,85 @@ public String getName() {
 		return db.update(command);
 	}
 	
+	public static HashMap<Pair<Integer, String>, Integer> getStatisticOfSeller(){
+		HashMap<Pair<Integer, String>, Integer> result = new HashMap<Pair<Integer, String>, Integer>();
+		String command = "SELECT n_employee, surname, (SELECT SUM(num) "
+				+ " FROM cheque_rows INNER JOIN cheques ON cheque_rows.n_cheque = cheques.n_cheque "
+				+ " WHERE sellers.n_employee = cheques.n_employee) AS quontity"
+				+ " FROM sellers";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	Pair<Integer, String> s;
+	    	while(rs.next()) {
+	    		int num = rs.getInt("n_employee");
+	    		String surname = rs.getString("surname");
+	    		int quontity = rs.getInt("quontity");
+	    		s = new Pair<Integer, String>(num, surname);
+	    	    result.put(s, quontity);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static HashMap<Pair<Integer, String>, Integer> getStatisticOfOfPeriod(int days){
+		LocalDate date =  LocalDate.now().minusDays(days);
+		System.out.println(date);
+		HashMap<Pair<Integer, String>, Integer> result = new HashMap<Pair<Integer, String>, Integer>();
+		String command = "SELECT n_employee, surname, (SELECT SUM(num) "
+				+ " FROM cheque_rows INNER JOIN cheques ON cheque_rows.n_cheque = cheques.n_cheque "
+				+ " WHERE sellers.n_employee = cheques.n_employee AND ch_date >= '"+date+"') AS quontity"
+				+ " FROM sellers";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	Pair<Integer, String> s;
+	    	while(rs.next()) {
+	    		int num = rs.getInt("n_employee");
+	    		String surname = rs.getString("surname");
+	    		int quontity = rs.getInt("quontity");
+	    		s = new Pair<Integer, String>(num, surname);
+	    	    result.put(s, quontity);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static HashMap<Integer, Integer> getStatisticOfOfPeriod(LocalDate from, LocalDate to){
+		HashMap<Integer, Integer> result = new HashMap<Integer, Integer>();
+		String command = "SELECT n_employee, SUM(num)" + 
+		        		" FROM cheque_rows INNER JOIN cheques ON cheque_rows.n_cheque = cheques.n_cheque" + 
+			        	" WHERE ch_date >= '"+from+"' AND ch_date <= '"+to+"'" + 
+			        	" GROUP BY n_employee;";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	Pair<Integer, String> s;
+	    	while(rs.next()) {
+	    		int num = rs.getInt("n_employee");
+	    		int quontity = rs.getInt("quontity");
+	    	    result.put(num, quontity);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+//	SELECT n_employee, SUM(num)
+//	FROM cheque_rows INNER JOIN cheques
+//	WHERE ch_date >= '2020-04-21' AND ch_date <= '2020-04-22'
+//	GROUP BY n_employee;
 
 	@Override
 	public String toString() {

@@ -130,7 +130,7 @@ public class ChequeRow {
 	
 	public static boolean delete(int id_product, int n_ch) {
 		String command = "DELETE FROM `cheque_rows`"
-				+ "WHERE id_product = "+id_product+" AND n_cheque = "+n_ch+"";
+				+ " WHERE id_product = "+id_product+" AND n_cheque = "+n_ch+"";
 		return db.update(command);
 	}
 	

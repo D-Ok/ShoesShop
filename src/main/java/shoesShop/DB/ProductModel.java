@@ -5,7 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.LinkedList;
+
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
 import shoesShop.Exceptions.ArgumentException;
 
@@ -23,6 +27,7 @@ public class ProductModel {
 	private boolean is_female;
 	private boolean is_male;
 	private boolean is_child;
+
 	
 	private static DBConnector db = DBConnector.getInstance();
 	
@@ -82,6 +87,10 @@ public class ProductModel {
 		this(n_model, category, season, name, price_purchase, extra_charge, true, true, true, true);
 	}
 	
+	public Product createProduct(String color, int size) throws ArgumentException {
+		return new Product(n_model, size, color);
+	}
+	
 	public static double round(double value, int places) {
 	    if (places < 0) throw new IllegalArgumentException();
 
@@ -94,12 +103,33 @@ public class ProductModel {
 	public String getN_model() {
 		return n_model;
 	}
+	
+	public void setMatherial(int matherial) throws ArgumentException {
+		setMatherial(n_model, matherial);
+	}
+	
+	public static void setMatherial(String n_model, int matherial) throws ArgumentException {
+		if(!Matherial.isUnique(matherial) || !ProductModel.isUniqueNum(n_model)) {
+			try {
+		    	PreparedStatement ps = db.connection.prepareStatement("INSERT INTO `model_materials`"
+		    			                                            + "(`n_model`, `material_id`) VALUES (?, ?)");
+		    	ps.setString(1, n_model);
+		    	ps.setInt(2, matherial);
+		    	ps.executeUpdate();
+		    	ps.close();
+	    	} catch(SQLIntegrityConstraintViolationException e) {
+	    		System.out.println("Material with this number exist.");
+	    	} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else throw new ArgumentException();
+	}
 
 	public void setN_model(String n_model) throws ArgumentException {
 		if(DBConnector.isValidModelNumber(n_model)) {
             String command = "UPDATE `product_models` "
-            		        + "SET n_model = '"+n_model+"' "
-            				+ "WHERE n_model = '"+this.n_model+"'";
+            		        + " SET n_model = '"+n_model+"' "
+            				+ " WHERE n_model = '"+this.n_model+"'";
 			if(db.update(command)) this.n_model = n_model;
 		} else throw new ArgumentException();
 	}
@@ -110,8 +140,8 @@ public class ProductModel {
 
 	public void setSeason(Season season) {
             String command = "UPDATE `product_models` "
-            		        + "SET season_id = '"+season.getId()+"' "
-            				+ "WHERE n_model = '"+this.n_model+"'";
+            		        + " SET season_id = '"+season.getId()+"' "
+            				+ " WHERE n_model = '"+this.n_model+"'";
 			if(db.update(command)) this.season = season;
 	}
 
@@ -121,8 +151,8 @@ public class ProductModel {
 
 	public void setCategory(Category category) {
 		   String command = "UPDATE `product_models` "
-   		        + "SET category_id = '"+category.getId()+"' "
-   				+ "WHERE n_model = '"+this.n_model+"'";
+   		        + " SET category_id = '"+category.getId()+"' "
+   				+ " WHERE n_model = '"+this.n_model+"'";
 		   if(db.update(command)) this.category = category;
 	}
 
@@ -133,8 +163,8 @@ public class ProductModel {
 	public void setName(String name) throws ArgumentException {
 		if(DBConnector.isNotEmpty(name)&&name.length()<41) {
             String command = "UPDATE `product_models` "
-            		        + "SET name = '"+name+"' "
-            				+ "WHERE n_model = '"+this.n_model+"'";
+            		        + " SET name = '"+name+"' "
+            				+ " WHERE n_model = '"+this.n_model+"'";
 			if(db.update(command)) this.name = name;
 		} else throw new ArgumentException();
 	}
@@ -147,8 +177,8 @@ public class ProductModel {
 		if(price_purchase>1 && price_purchase<10000) {
 			double pp = round(price_purchase, 2);
             String command = "UPDATE `product_models` "
-            		        + "SET price_purchase = '"+pp+"' "
-            				+ "WHERE n_modele = '"+n_model+"'";
+            		        + " SET price_purchase = '"+pp+"' "
+            				+ " WHERE n_modele = '"+n_model+"'";
 			if(db.update(command)) this.price_purchase = pp;
 			shop_price = getShop_price(n_model);
 		} else throw new ArgumentException();
@@ -161,8 +191,8 @@ public class ProductModel {
 	public void setExtra_charge(int extra_charge) throws ArgumentException {
 		if(extra_charge>0 && extra_charge<1000) {
             String command = "UPDATE `product_models` "
-            		        + "SET extra_charge = '"+extra_charge+"' "
-            				+ "WHERE n_modele = '"+n_model+"'";
+            		        + " SET extra_charge = '"+extra_charge+"' "
+            				+ " WHERE n_modele = '"+n_model+"'";
 			if(db.update(command)) this.extra_charge = extra_charge;
 			shop_price = getShop_price(n_model);
 		} else throw new ArgumentException();
@@ -174,8 +204,8 @@ public class ProductModel {
 
 	public void setIs_full(boolean is_full) {
 		String command = "UPDATE `product_models` "
-		        + "SET is_full = '"+is_full+"' "
-				+ "WHERE n_modele = '"+n_model+"'";
+		        + " SET is_full = '"+is_full+"' "
+				+ " WHERE n_modele = '"+n_model+"'";
 		if(db.update(command)) this.is_full = is_full;
 	}
 
@@ -185,8 +215,8 @@ public class ProductModel {
 
 	public void setIs_female(boolean is_female) {
 		String command = "UPDATE `product_models` "
-		        + "SET is_female = '"+is_female+"' "
-				+ "WHERE n_modele = '"+n_model+"'";
+		        + " SET is_female = '"+is_female+"' "
+				+ " WHERE n_modele = '"+n_model+"'";
 		if(db.update(command)) this.is_female = is_female;
 	}
 
@@ -196,8 +226,8 @@ public class ProductModel {
 
 	public void setIs_male(boolean is_male) {
 		String command = "UPDATE `product_models` "
-		        + "SET is_male = '"+is_male+"' "
-				+ "WHERE n_modele = '"+n_model+"'";
+		        + " SET is_male = '"+is_male+"' "
+				+ " WHERE n_modele = '"+n_model+"'";
 		if(db.update(command)) this.is_male = is_male;
 	}
 
@@ -207,8 +237,8 @@ public class ProductModel {
 
 	public void setIs_child(boolean is_child) {
 		String command = "UPDATE `product_models` "
-		        + "SET is_child = '"+is_child+"' "
-				+ "WHERE n_modele = '"+n_model+"'";
+		        + " SET is_child = '"+is_child+"' "
+				+ " WHERE n_modele = '"+n_model+"'";
 		if(db.update(command)) this.is_child = is_child;
 	}
 	
@@ -239,7 +269,7 @@ public class ProductModel {
 	public static double getShop_price(String n_model) {
 		double r = 0;
 		String command = "SELECT shop_price FROM `product_models`"
-				+ "WHERE n_model = '"+n_model+"'";
+				+ " WHERE n_model = '"+n_model+"'";
 	
 		try {
 			Statement statement = db.connection.createStatement();
@@ -261,8 +291,8 @@ public class ProductModel {
     public static ProductModel getModel(String n_model) { 
     	ProductModel s = null;
 		String command = "SELECT * "
-				+ "FROM product_models "
-				+ "WHERE n_model = '"+n_model+"'";
+				+ " FROM product_models "
+				+ " WHERE n_model ='"+n_model+"'";
 	
 		try {
 			Statement statement = db.connection.createStatement();
@@ -328,7 +358,7 @@ public class ProductModel {
 
 	public static boolean delete(String n_model) {
 		String command = "DELETE FROM `product_models`"
-				+ "WHERE n_model = '"+n_model+"'";
+				+ " WHERE n_model = '"+n_model+"'";
 		return db.update(command);
 	}
     
@@ -341,16 +371,276 @@ public class ProductModel {
 		return db.isUnique(command);
 	}
 	
-//    public static Seller getSellers(String n_model) {
-//   	 String command = "SELECT * "
-//   	 		+ "FROM `produsers` INNER JOIN `consignment_notes` ON produsers.n_company = consignment_notes.n_company"
-//   	 		+ " INNER JOIN `consignment_note_rows` ON consignment_notes.n_cons = consignment_note_rows.n_cons "
-//   	 		+ " INNER JOIN `product_models` ON product_models.n_model = consignment_note_rows.n_model"
-// 				+ "WHERE product_models.n_model = '"+n_model+"'";
-// 	
-// 		return getOne(command);
-//    }
+	public static LinkedList<ProductModel> getAllBySizesInStock(int fromSize, int toSize) throws ArgumentException{
+		if(fromSize>toSize) throw new ArgumentException();
+		String command = "SELECT n_model, name " + 
+				"		FROM product_models " + 
+				"		WHERE NOT EXISTS(" + 
+				"		              SELECT *" + 
+				"					  FROM products" + 
+				"		              WHERE size>"+fromSize+" AND size<"+toSize+" AND" + 
+				"		                    size NOT IN (SELECT size" + 
+				"									     FROM products" + 
+				"		                                 WHERE products.n_model = product_models.n_model" + 
+				"		                                 AND num>0))";
+		
+		return getAll(command);
+	}
+	
+    public static ProductModel getProduser(String n_model) {
+   	 String command = "SELECT * "
+   	 		+ "FROM `produsers` INNER JOIN `consignment_notes` ON produsers.n_company = consignment_notes.n_company"
+   	 		+ " INNER JOIN `consignment_note_rows` ON consignment_notes.n_cons = consignment_note_rows.n_cons "
+   	 		+ " INNER JOIN `product_models` ON product_models.n_model = consignment_note_rows.n_model"
+ 			+ " WHERE product_models.n_model = '"+n_model+"'";
+ 	
+ 		return getOne(command);
+    }
+    
+    public static ProductModel getOne(String command) { 
+    	ProductModel res = new ProductModel();
+	
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	if(rs.next()) {
+	    		ProductModel s = new ProductModel();
+	    		s.n_model = rs.getString("n_model");
+	    		s.name = rs.getString("name");
+	    		s.category = Category.getCategorynById(rs.getInt("category_id"));
+	    		s.season = Season.getSeasonById(rs.getInt("season_id"));
+	    		s.price_purchase = rs.getDouble("price_purchase");
+	    		s.extra_charge = rs.getInt("extra_charge");
+	    		s.is_full = rs.getBoolean("is_full");
+	    		s.is_female = rs.getBoolean("is_female");
+	    		s.is_male = rs.getBoolean("is_male");
+	    		s.is_child = rs.getBoolean("is_child");
+	    		s.shop_price = getShop_price(s.n_model);
+	    		s.number = Product.getNumberOfModel(s.n_model);
+	    	}
+	    	statement.close();
+		} catch (SQLException | ArgumentException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 
+    public static HashMap<String, Integer> getAllProductsNumber() {
+    	HashMap<String, Integer> res = new HashMap<String, Integer>();
+    	String command = "SELECT n_model, SUM(num) AS all_num" + 
+    					" FROM products" + 
+    					" GROUP BY n_model";
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	String n_model;
+	    	Integer num;
+	    	while(rs.next()) {
+	    		n_model = rs.getString("n_model");
+	    		num = rs.getInt("all_num");
+	    		res.put(n_model, num);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+    }
+    
+    /**
+     * Повертає кількість проданих пар за певний період
+     * @param from
+     * @param to
+     * @return
+     */
+    public static HashMap<String, Integer> getStatisticOfPeriod(LocalDate from, LocalDate to){
+    	String command = "SELECT n_model, SUM(cheque_rows.num) AS all_num" + 
+    			" FROM products INNER JOIN cheque_rows ON products.id = cheque_rows.id_product" + 
+    			"     INNER JOIN cheques ON cheques.n_cheque = cheque_rows.n_cheque" + 
+    			" WHERE ch_date >= '"+from+"' AND ch_date <= '"+to+"'" + 
+    			" GROUP BY n_model;";
+    	HashMap<String, Integer> h = new HashMap<String, Integer>();
+    	try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	String n_model;
+	    	Integer num;
+	    	while(rs.next()) {
+	    		n_model = rs.getString("n_model");
+	    		num = rs.getInt("all_num");
+	    		h.put(n_model, num);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	
+    	return h;
+    }
+    
+    public static HashMap<ProductModel, Integer> filterOnStockByCategory(int category_id, int size){
+    	String command = "SELECT *, (SELECT SUM(num)" + 
+    			"           FROM products" + 
+    			"		   WHERE n_model = product_models.n_model  AND size="+size+") AS num" + 
+    			" FROM product_models " + 
+    			" WHERE category_id = "+category_id+" " + 
+    			"					  AND EXISTS (SELECT * " + 
+    			"                                  FROM products" + 
+    			"                                  WHERE n_model = product_models.n_model  AND size="+size+" AND num>0)";
+    	return filterOnStock(command);
+    }
+    
+    public static HashMap<ProductModel, Integer> filterOnStock(int season_id, int size){
+    	String command = "SELECT *, (SELECT SUM(num)" + 
+    			"           FROM products" + 
+    			"		   WHERE n_model = product_models.n_model  AND size="+size+") AS num" + 
+    			" FROM product_models " + 
+    			" WHERE season_id = "+season_id+" " + 
+    			"					  AND EXISTS (SELECT * " + 
+    			"                                  FROM products" + 
+    			"                                  WHERE n_model = product_models.n_model  AND size="+size+" AND num>0)";
+    	return filterOnStock(command);
+    }
+    
+    public static HashMap<ProductModel, Integer> filterOnStock(int category_id, int season_id, int size, int matherial){
+    	String command = "SELECT *, (SELECT SUM(num)" + 
+    			"           FROM products" + 
+    			"		   WHERE n_model = product_models.n_model  AND size="+size+") AS num" + 
+    			" FROM product_models " + 
+    			" WHERE category_id = "+category_id+" AND season_id = "+season_id+" " + 
+    			"					  AND EXISTS (SELECT * " + 
+    			"                                  FROM products" + 
+    			"                                  WHERE n_model = product_models.n_model  AND size="+size+" AND num>0)" + 
+    			"                      AND n_model IN (SELECT n_model" + 
+    			"                                      FROM model_materials" + 
+    			"                                      WHERE material_id = "+matherial+" )" + 
+    			"";
+    	return filterOnStock(command);
+    }
+    
+    public static HashMap<ProductModel, Integer> filterOnStock(int category_id, int season_id, int size){
+    	String command = "SELECT *, (SELECT SUM(num)" + 
+    			"           FROM products" + 
+    			"		   WHERE n_model = product_models.n_model  AND size="+size+") AS num" + 
+    			" FROM product_models " + 
+    			" WHERE category_id = "+category_id+" AND season_id = "+season_id+" " + 
+    			"					  AND EXISTS (SELECT * " + 
+    			"                                  FROM products" + 
+    			"                                  WHERE n_model = product_models.n_model  AND size="+size+" AND num>0)";
+    	return filterOnStock(command);
+    }
+    
+    public static HashMap<ProductModel, Integer> filterOnStockSetOfSizes(int category_id, int season_id, int matherial, int from, int to){
+    	String command = "SELECT *, (SELECT SUM(num)" + 
+    			"           FROM products" + 
+    			"		   WHERE n_model = product_models.n_model AND size>=36 AND size<=40) AS num" + 
+    			" FROM product_models " + 
+    			" WHERE category_id = "+category_id+" AND season_id = "+season_id+"" + 
+    			"					  AND EXISTS (SELECT * " + 
+    			"                                  FROM products" + 
+    			"                                  WHERE n_model = product_models.n_model  AND size>="+from+" AND size<="+to+")\r\n" + 
+    			"                      AND n_model IN (SELECT n_model" + 
+    			"                                      FROM model_materials" + 
+    			"                                      WHERE material_id = "+matherial+")";
+    	return filterOnStock(command);
+    }
+    
+    protected static HashMap<ProductModel, Integer> filterOnStock(String command){
+    	HashMap<ProductModel, Integer> res = new HashMap<ProductModel, Integer>();
+    	
+    	try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		ProductModel s = new ProductModel();
+	    		s.n_model = rs.getString("n_model");
+	    		s.name = rs.getString("name");
+	    		s.category = Category.getCategorynById(rs.getInt("category_id"));
+	    		s.season = Season.getSeasonById(rs.getInt("season_id"));
+	    		s.price_purchase = rs.getDouble("price_purchase");
+	    		s.extra_charge = rs.getInt("extra_charge");
+	    		s.is_full = rs.getBoolean("is_full");
+	    		s.is_female = rs.getBoolean("is_female");
+	    		s.is_male = rs.getBoolean("is_male");
+	    		s.is_child = rs.getBoolean("is_child");
+	    		s.shop_price = getShop_price(s.n_model);
+	    		s.number = Product.getNumberOfModel(s.n_model);
+	    		int n = rs.getInt("num");
+	    		res.put(s, n);
+	    	}
+	    	statement.close();
+		} catch (SQLException | ArgumentException e) {
+			e.printStackTrace();
+		}
+    	return res;
+    }
+    
+    /**
+     * 
+     * @param category_id
+     * @param season_id
+     * @param matherial
+     * @return Повертає відсортовані моделі та рахує наявну кількість кожного розміру моделі
+     */
+    public static HashMap<Pair<String, Integer>, Integer> filterBySizes(int category_id, int season_id, int matherial){
+    	String command = "SELECT products.n_model, size, SUM(num) AS num" + 
+    			" FROM product_models INNER JOIN products ON products.n_model = product_models.n_model" + 
+    			" WHERE category_id = "+category_id+" AND season_id = "+season_id+"" + 
+    			"                      AND products.n_model IN (SELECT n_model" + 
+    			"                                           FROM model_materials" + 
+    			"                                           WHERE material_id = "+matherial+")" + 
+    			" GROUP BY  products.n_model, size" + 
+    			"";
+    	return filterBySizes(command);
+    }
+    
+    /**
+     * @return Повертає відсортовані моделі та рахує наявну кількість кожного розміру моделі
+     */
+    public static HashMap<Pair<String, Integer>, Integer> filterBySizes(int category_id){
+    	String command = "SELECT products.n_model, size, SUM(num) AS num" + 
+    			" FROM product_models INNER JOIN products ON products.n_model = product_models.n_model" + 
+    			" WHERE category_id = "+category_id+" " + 
+    			" GROUP BY  products.n_model, size " ;
+    	return filterBySizes(command);
+    }
+    
+    /**
+     * @return Повертає відсортовані моделі та рахує наявну кількість кожного розміру моделі
+     */
+    public static HashMap<Pair<String, Integer>, Integer> filterBySeasonBySizes(int season_id){
+    	String command = "SELECT products.n_model, size, SUM(num) AS num" + 
+    			" FROM product_models INNER JOIN products ON products.n_model = product_models.n_model" + 
+    			" WHERE season_id = "+season_id+" " + 
+    			" GROUP BY  products.n_model, size" + 
+    			"";
+    	return filterBySizes(command);
+    }
+ 
+    /**
+     * @return Повертає відсортовані моделі та рахує наявну кількість кожного розміру моделі
+     */
+    protected static HashMap<Pair<String, Integer>, Integer> filterBySizes(String command){
+    	HashMap<Pair<String, Integer>, Integer> res = new HashMap<Pair<String, Integer>, Integer>();
+    	
+    	try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		
+	    		String n_model = rs.getString("n_model");
+	    		int size = rs.getInt("size");
+	    		int n = rs.getInt("num");
+	    		Pair<String, Integer> p= new Pair<String, Integer>(n_model, size);
+	    		res.put(p, n);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return res;
+    }
+    
 	@Override
 	public String toString() {
 		return "ProductModel [n_model=" + n_model + ",\n category=" + category + ",\n season=" + season + ","

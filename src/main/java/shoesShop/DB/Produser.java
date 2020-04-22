@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import shoesShop.Exceptions.ArgumentException;
@@ -44,7 +46,7 @@ public class Produser {
 					if(!DBConnector.isValidPhone(third_phone)) throw new ArgumentException("Not valid phone secondary number");
 			try {
 		    	PreparedStatement ps = db.connection.prepareStatement("INSERT INTO `produsers`"
-		    			                                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		    			                                            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		    	ps.setInt(1, n_company);
 		    	ps.setString(2, name);
 		    	ps.setString(3, city);
@@ -272,7 +274,7 @@ public class Produser {
      
      public static Produser getOne(int n) { 
  		String command = "SELECT * FROM `produsers`"
- 				+ "WHERE n_company = '"+n+"'";
+ 				+ " WHERE n_company = '"+n+"'";
  	
  		return getOne(command);
  	}
@@ -302,10 +304,32 @@ public class Produser {
 	
 	public static boolean deleteCompany(int n) {
 		String command = "DELETE FROM `produsers`"
-				+ "WHERE n_company = '"+n+"'";
+				+ " WHERE n_company = '"+n+"'";
 		return db.update(command);
 	}
 	
+	public static HashMap<Integer, Integer> getPeriodStatistic(LocalDate from, LocalDate to){
+		HashMap<Integer, Integer> res = new HashMap<Integer, Integer>();
+		String command = "SELECT n_company, SUM(num) AS f_num" + 
+				" FROM consignment_note_rows INNER JOIN consignment_notes ON consignment_note_rows.n_cons = consignment_notes.n_cons" + 
+				" WHERE c_date >= '2020-04-21' AND c_date <= '2020-04-22'" + 
+				" GROUP BY n_company";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	int comp, num;
+	    	while(rs.next()) {
+	    		comp = rs.getInt("n_company");
+				num = rs.getInt("f_num");
+				res.put(comp, num);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
 	@Override
 	public String toString() {
