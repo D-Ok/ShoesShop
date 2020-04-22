@@ -77,7 +77,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane2" min="-2" pref="330" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -105,7 +105,7 @@
                                           </Group>
                                           <Component id="jTextField1" min="-2" pref="113" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -245,6 +245,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Yu Gothic UI" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x44f;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;:"/>
+      </Properties>
+    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -260,12 +268,42 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
-                <Column editable="false" title="&#x41d;&#x43e;&#x43c;&#x435;&#x440;" type="java.lang.String"/>
-                <Column editable="false" title="&#x41d;&#x430;&#x437;&#x432;&#x430;" type="java.lang.String"/>
-                <Column editable="false" title="&#x426;&#x456;&#x43d;&#x430; &#x437;&#x430;&#x43a;&#x443;&#x43f;&#x456;&#x432;&#x43b;&#x456;" type="java.lang.Integer"/>
-                <Column editable="false" title="&#x41d;&#x430;&#x446;&#x456;&#x43d;&#x43a;&#x430;" type="java.lang.Short"/>
-                <Column editable="false" title="&#x426;&#x456;&#x43d;&#x430; &#x43f;&#x440;&#x43e;&#x434;&#x430;&#x436;&#x443;" type="java.lang.Integer"/>
+              <Table columnCount="5" rowCount="5">
+                <Column editable="true" title="&#x41d;&#x43e;&#x43c;&#x435;&#x440;" type="java.lang.Object">
+                  <Data value="1&#x456;&#x440;47"/>
+                  <Data value="1is56"/>
+                  <Data value="1id89"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x41d;&#x430;&#x437;&#x432;&#x430;" type="java.lang.Object">
+                  <Data value="&#x411;&#x43e;&#x441;&#x43e;&#x43d;&#x456;&#x436;&#x43a;&#x438; &#x441;&#x435;&#x440;&#x435;&#x431;&#x43b;&#x44f;&#x441;&#x442;&#x456; &#x437; &#x442;&#x430;&#x43d;&#x43a;&#x435;&#x442;&#x43a;&#x43e;&#x44e;"/>
+                  <Data value="&#x41a;&#x440;&#x43e;&#x441;&#x456;&#x432;&#x43a;&#x438; &#x431;&#x456;&#x43b;&#x456;"/>
+                  <Data value="&#x421;&#x430;&#x43d;&#x434;&#x430;&#x43b;&#x456; &#x447;&#x43e;&#x43b;&#x43e;&#x432;&#x456;&#x447;&#x456; &#x437; &#x435;&#x43a;&#x43e;-&#x448;&#x43a;&#x456;&#x440;&#x438;"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x426;&#x456;&#x43d;&#x430; &#x437;&#x430;&#x43a;&#x443;&#x43f;&#x456;&#x432;&#x43b;&#x456;" type="java.lang.Object">
+                  <Data value="1200"/>
+                  <Data value="1600"/>
+                  <Data value="1000"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x41d;&#x430;&#x446;&#x456;&#x43d;&#x43a;&#x430;" type="java.lang.Object">
+                  <Data value="20"/>
+                  <Data value="30"/>
+                  <Data value="15"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x426;&#x456;&#x43d;&#x430; &#x434;&#x43b;&#x44f; &#x43f;&#x440;&#x43e;&#x434;&#x430;&#x436;&#x443;" type="java.lang.Object">
+                  <Data value="1440"/>
+                  <Data value="2090"/>
+                  <Data value="1150"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -304,14 +342,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Yu Gothic UI" size="12" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x41d;&#x430;&#x44f;&#x432;&#x43d;&#x456;&#x441;&#x442;&#x44c;:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -551,5 +581,26 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTable2">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

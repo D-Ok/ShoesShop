@@ -31,9 +31,9 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
         Seasons = new javax.swing.ButtonGroup();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
@@ -58,6 +58,8 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,36 +79,25 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jLabel1.setText("Наявність:");
+
         jScrollPane2.setBackground(new java.awt.Color(204, 204, 255));
         jScrollPane2.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"1ір47", "Босоніжки сереблясті з танкеткою", "1200", "20", "1440"},
+                {"1is56", "Кросівки білі", "1600", "30", "2090"},
+                {"1id89", "Сандалі чоловічі з еко-шкіри", "1000", "15", "1150"},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Номер", "Назва", "Ціна закупівлі", "Націнка", "Ціна продажу"
+                "Номер", "Назва", "Ціна закупівлі", "Націнка", "Ціна для продажу"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Short.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane2.setViewportView(jTable1);
-
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        jLabel1.setText("Наявність:");
 
         jCheckBox1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         jCheckBox1.setText("Чоловіче");
@@ -196,6 +187,19 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
             }
         });
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -236,7 +240,7 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
                                         .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +262,7 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
                                                 .addGap(10, 10, 10)
                                                 .addComponent(jButton1))
                                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 63, Short.MAX_VALUE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(78, 78, 78)
@@ -435,7 +439,9 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
