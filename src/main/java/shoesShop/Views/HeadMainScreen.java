@@ -74,10 +74,23 @@ public class HeadMainScreen extends javax.swing.JFrame {
           JMenuItem staffItemRefresh = new JMenuItem("Продавець");
         staffItemRefresh.setFont(font);
         refreshMenu.add(staffItemRefresh);
-      
-        
-        fileMenu.addSeparator();
-         
+      JMenu infoMenu = new JMenu("Вивести дані про...");
+        infoMenu.setFont(font);
+        fileMenu.add(infoMenu);
+         JMenuItem infoProdItem = new JMenuItem("Виробника");
+        infoProdItem.setFont(font);
+        infoMenu.add(infoProdItem);
+        JMenuItem infoOrderItem = new JMenuItem("Накладну");
+        infoOrderItem.setFont(font);
+        infoMenu.add( infoOrderItem);
+        JMenuItem infoStaffItem = new JMenuItem("Продавця");
+        infoStaffItem.setFont(font);
+        infoMenu.add(infoStaffItem);
+        infoMenu.addSeparator();
+             JMenuItem infoShoeItem = new JMenuItem("Моделі взуття");
+        infoShoeItem.setFont(font);
+        infoMenu.add(infoShoeItem);
+        infoMenu.addSeparator();
         JMenuItem exitItem = new JMenuItem("Exit");
         exitItem.setFont(font);
         fileMenu.add(exitItem);
