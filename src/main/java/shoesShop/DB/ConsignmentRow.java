@@ -142,7 +142,7 @@ public class ConsignmentRow {
 	
 	public static boolean delete(String id_product, int n_cons) {
 		String command = "DELETE FROM `consignment_note_rows`"
-				+ "WHERE id_product = "+id_product+" AND n_cons = "+n_cons+"";
+				+ " WHERE id_product = "+id_product+" AND n_cons = "+n_cons+"";
 		return db.update(command);
 	}
 

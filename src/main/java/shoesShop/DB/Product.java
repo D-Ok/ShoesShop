@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -32,8 +33,8 @@ public class Product {
 		int id = generateId();
 		try {
 	    	PreparedStatement ps = db.connection.prepareStatement("INSERT INTO `products`"
-	    														+ "(n_model, size, num, color, id)"
-	    														+ "VALUES (?, ?, ?, ?, ?)");
+	    														+ " (n_model, size, num, color, id)"
+	    														+ " VALUES (?, ?, ?, ?, ?)");
 	    	ps.setString(1, n_model);
 	    	ps.setInt(2, size);
 	    	ps.setInt(3, number);
@@ -172,7 +173,7 @@ public class Product {
 			Statement statement = db.connection.createStatement();
 	    	ResultSet rs = statement.executeQuery(command);
 	    	while(rs.next()) {
-	    		String s = rs.getString("colos");
+	    		String s = rs.getString("color");
 	    	    result.add(s);
 	    	}
 	    	statement.close();
@@ -217,6 +218,22 @@ public class Product {
 	    		s.number = rs.getInt("num");
 	    		s.id = rs.getInt("id");
 	    		s.color = rs.getString("color");
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return s;
+    }
+	
+	public static int getId(String n_model, String color, int size) {
+		String command = "SELECT id FROM products WHERE n_model = '"+n_model+"' AND color = '"+color+"' AND size = "+size+"";
+		int s =-1;
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	if(rs.next()) {
+	    		s = rs.getInt("id");
 	    	}
 	    	statement.close();
 		} catch (SQLException e) {
@@ -283,11 +300,29 @@ public class Product {
 		return n;
     }
 	
+	public static void createMany(String [] colors, int [] sizes, String n_model) throws ArgumentException {
+		for(String c: colors) {
+			for(int s: sizes) {
+				new Product(n_model, s, c);
+			}
+		}
+	}
+	
+	public static void createMany(String []colors, int from, int to, String n_model) throws ArgumentException {
+		if(from<to) {
+			for(String c: colors) {
+				for(int i =from; i<=to; i++) 
+					new Product(n_model, i, c);
+			}
+		}
+	}
+	
 	public static boolean delete( int id) {
 		String command = "DELETE FROM `products`"
 				+ "WHERE id = "+id+"";
 		return db.update(command);
 	}
+	
 
 	@Override
 	public String toString() {

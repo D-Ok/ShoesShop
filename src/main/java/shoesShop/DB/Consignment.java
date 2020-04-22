@@ -54,8 +54,8 @@ public class Consignment {
 		init();
 	}
 	
-	public ConsignmentRow addRow(int id_model, int num) throws ArgumentException {
-		ConsignmentRow c = new ConsignmentRow(id_model, n_cons, num);
+	public ConsignmentRow addRow(int id_product, int num) throws ArgumentException {
+		ConsignmentRow c = new ConsignmentRow(id_product, n_cons, num);
 		return c;
 	}
 	
@@ -188,7 +188,7 @@ public class Consignment {
 
 	public static boolean delete(int n_cons) {
 		String command = "DELETE FROM `consignment_notes`"
-				+ "WHERE n_cons = '"+n_cons+"'";
+				+ " WHERE n_cons = '"+n_cons+"'";
 		return db.update(command);
 	}
 	

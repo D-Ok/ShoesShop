@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
 import shoesShop.Exceptions.ArgumentException;
 
@@ -117,7 +118,7 @@ public class DBConnector {
 			
 		   protected static int getIdByName(String name, String table) throws ArgumentException {
 			   String command = "SELECT * FROM `"+table+"`"
-						+ "WHERE name = '"+name+"'";
+						+ " WHERE name = '"+name+"'";
 			   int id = -1;
 				try {
 					Statement statement = connection.createStatement();
@@ -134,7 +135,7 @@ public class DBConnector {
 		   
 		   protected static String getNameById(int id, String table) throws ArgumentException {
 			   String command = "SELECT * FROM `"+table+"`"
-						+ "WHERE id = '"+id+"'";
+						+ " WHERE id = '"+id+"'";
 			   String s = "";
 				try {
 					Statement statement = connection.createStatement();
@@ -182,18 +183,18 @@ public class DBConnector {
 //				e.printStackTrace();
 //			}
 			
-//			try {
+			try {
 //				ProductModel p1 = ProductModel.getModel("2");
 //				p1.setName("черевики-fasion");
 //				LinkedList<ProductModel> l = ProductModel.getAllModels();
 				
-//				HashMap<Integer, Integer> m = new HashMap<Integer, Integer>();
-//				m.put(Product.get("1", "бежевий", 39).getId(), 10);
-//				m.put(Product.get("1", "чорний", 37).getId(), 10);
+				HashMap<Integer, Integer> m = new HashMap<Integer, Integer>();
+				m.put(Product.get("1", "бежевий", 39).getId(), 1);
+//				m.put(Product.get("1", "чорний", 37).getId(), );
 //				m.put(Product.get("1", "чорний", 38).getId(), 5);
 //				m.put(Product.get("1", "чорний", 36).getId(), 5);
-//				Consignment con = Main.buyShoes(2, m, "");
-//				Cheque che = Main.sellShoes(1, m, "added");
+////				Consignment con = Main.buyShoes(2, m, "");
+				Cheque che = Main.sellShoes(2, m, "");
 //				
 //				LinkedList<Product> l = Product.getAllproductsOfModel("1");
 //				ProductModel p = ProductModel.getModel("1");
@@ -220,18 +221,71 @@ public class DBConnector {
 //					}
 //				}
 //				
-				LinkedList<ProductModel> p = new LinkedList<ProductModel>(Produser.getAllModel(2));
-				for(ProductModel pr: p) {
-					System.out.println(pr);
-				}
-
-				Produser pr = Produser.getProdOfModel("1");
-					System.out.println(pr);
-				
-				
-//			} catch (ArgumentException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
+			
+//			ProductModel pm = new ProductModel("AA-595", Category.BEACH, Season.SUMMER, "пляжні тапки", 100, 50, true, true, false, false);
+//				
+//			Matherial m = new Matherial("гума");
+//			ProductModel pm = ProductModel.getModel("2");
+			
+//			String [] col = {"чорний", "білий"};
+//			String [] col1 = {"чорний"};
+//			ProductModel p2 = ProductModel.getModel("2");
+			
+//			Product.createMany(col1, 36, 46, p2);
+//			
+//			String p3 = ProductModel.getModel("3").getN_model();
+//			Product.createMany(col, 40, 46, p3);
+//			
+//			String p4 = ProductModel.getModel("4").getN_model();
+//			Product.createMany(col, 36, 40, p4);
+			
+//			String [] col2 = {"чорний", "білий", "синій"};
+//			String p5 = ProductModel.getModel("00-4").getN_model();
+//			Product.createMany(col2, 26, 46, p5);
+			
+			//LinkedList<Produser> pr = Produser.getAll();
+//			ProductModel pm = ProductModel.getModel("2");
+//			ProductModel pm1 = ProductModel.getModel("1");
+//			ProductModel pm2 = ProductModel.getModel("3");
+//			ProductModel pm3 = ProductModel.getModel("4");
+//			Main.buyFullSetOfModel(2, pm, 10, "2 - 10");
+//			Main.buyFullSetOfModel(2, pm1, 10, "2");
+//			Main.buyFullSetOfModel(2, pm2, 10, "2");
+//			Main.buyFullSetOfModel(2, pm3, 10, "2");
+//
+//			ProductModel pm5 = ProductModel.getModel("00-3");
+//			ProductModel pm6 = ProductModel.getModel("00-4");
+//			Main.buyFullSetOfModel(1, pm5, 5, "1 - 5");
+//			Main.buyFullSetOfModel(1, pm6, 5, "1");
+//			
+//			ProductModel pm4 = ProductModel.getModel("AA-595");
+//			Main.buyFullSetOfModel(3, pm4, 20, "3 - 20");
+			
+//			LinkedList<Matherial> math = Matherial.getAllMatherials();
+//			for(Matherial ma: math) {
+//				System.out.println(ma);
 //			}
+//				LinkedList<ProductModel> p = new LinkedList<ProductModel>(Produser.getAllModel(2));
+//				for(ProductModel pr: p) {
+//					System.out.println(pr);
+//				}
+//
+//				Produser pr = Produser.getProdOfModel("1");
+//					System.out.println(pr);
+//					
+//				HashMap<Pair<Integer, String>, Integer> h = Seller.getStatisticOfSellerOfPeriod(1);
+//				for(Pair<Integer, String> s1: h.keySet()) {
+//					System.out.println("n_employee = "+s1.left+" surname = "+s1.right+" number = "+h.get(s1));
+//				}
+				
+			HashMap<Pair<String, Integer>, Integer> h  = ProductModel.filterBySizes(1);
+			for(Pair<String, Integer> p: h.keySet()) {
+				System.out.println(p.left+" "+p.right+" "+h.get(p));
+			}
+				
+			} catch (ArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} 
 }

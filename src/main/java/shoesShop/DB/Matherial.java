@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import java.util.Random;
 
 import shoesShop.Exceptions.ArgumentException;
 
@@ -20,9 +21,11 @@ public class Matherial {
 		if(!DBConnector.isOnlyLetters(name)) throw new ArgumentException("Not valid name");
 		if(!isNameUnique(name)) throw new ArgumentException("This name is already exist");
 		
+		int id = generateId();
 		try {
 	    	PreparedStatement ps = db.connection.prepareStatement("INSERT INTO `materials`"
-	    			                                            + "VALUES ('name') (?)");
+	    			                                            + " (`name`, `id`) VALUES (?, ?)");
+	    	ps.setInt(2, id);
 	    	ps.setString(1, name);
 	    	ps.executeUpdate();
 	    	ps.close();
@@ -33,8 +36,23 @@ public class Matherial {
 		}
 		
 		this.name = name;
-		this.id = Matherial.getidByName(name);
+		this.id = id;
 		
+	}
+	
+	private int generateId() {
+		Random r = new Random();
+		int id = 1;
+		while(!isUnique(id)) id = r.nextInt(1000000000); 
+		return id;
+	}
+	
+	protected static boolean isUnique(int name) {
+		String command = "SELECT * "
+				+ "FROM materials "
+				+ "WHERE id = "+name+"";
+		
+		return DBConnector.isUnique(command);
 	}
 	
 	private boolean isNameUnique(String name) {
@@ -84,7 +102,7 @@ public class Matherial {
     
 	public static boolean deleteMatherial(int id) {
 		String command = "DELETE FROM `materials`"
-				+ "WHERE id = '"+id+"'";
+				+ " WHERE id = '"+id+"'";
 		return db.update(command);
 	}
 
@@ -92,7 +110,7 @@ public class Matherial {
     	LinkedList<Matherial> result = new LinkedList<Matherial>();
 		String command = "SELECT * "
 				+ "FROM `materials` INNER JOIN `model_materials` ON `materials`.`id` = `model_materials`.`material_id`"
-				+ "WHERE `n_model` = '"+n_model+"'";
+				+ " WHERE `n_model` = '"+n_model+"'";
 		
 		try {
 			Statement statement = db.connection.createStatement();

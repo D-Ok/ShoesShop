@@ -142,7 +142,7 @@ public class Cheque {
 	
 	public static boolean delete( int n_ch) {
 		String command = "DELETE FROM `cheques`"
-				+ "WHERE n_cheque = "+n_ch+"";
+				+ " WHERE n_cheque = "+n_ch+"";
 		return db.update(command);
 	}
 
