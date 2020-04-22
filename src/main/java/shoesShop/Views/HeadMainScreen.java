@@ -18,11 +18,12 @@ import javax.swing.JMenuItem;
  *
  * @author Iryna Butenko
  */
-public class HeadMainScreen extends javax.swing.JFrame {
+public class HeadMainScreen extends javax.swing.JFrame  {
 
     /**
      * Creates new form HeadMainScreen
      */
+ 
     public HeadMainScreen() {
         initComponents();
          JFrame frame = new JFrame("Test frame");
@@ -34,7 +35,9 @@ public class HeadMainScreen extends javax.swing.JFrame {
          
         JMenu fileMenu = new JMenu("Дії");
         fileMenu.setFont(font);
-         
+        JMenu totalGoodsMenu = new JMenu("Всі товари ");
+         totalGoodsMenu.setFont(font);
+       
         JMenu newMenu = new JMenu("Додати новий запис про...");
         newMenu.setFont(font);
         fileMenu.add(newMenu);
@@ -77,6 +80,7 @@ public class HeadMainScreen extends javax.swing.JFrame {
       JMenu infoMenu = new JMenu("Вивести дані про...");
         infoMenu.setFont(font);
         fileMenu.add(infoMenu);
+        
          JMenuItem infoProdItem = new JMenuItem("Виробника");
         infoProdItem.setFont(font);
         infoMenu.add(infoProdItem);
@@ -100,14 +104,32 @@ public class HeadMainScreen extends javax.swing.JFrame {
                 System.exit(0);             
             }           
         });
-         
+        JMenuItem allItem = new JMenuItem("Робота з товарами");
+        allItem.setFont(font);
+        totalGoodsMenu.add(allItem);
+        allItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                  frame.setVisible(false);
+             ShopGoodsFrame shopGoodsFrame = new ShopGoodsFrame();
+             shopGoodsFrame.setVisible(true); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            private void setVisible(boolean b) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        JMenuItem statItem= new JMenuItem("Подивитися статистику магазину");
+        statItem.setFont(font);
+        totalGoodsMenu.add(statItem);
         menuBar.add(fileMenu);
-                 
+                 menuBar.add(totalGoodsMenu);
         frame.setJMenuBar(menuBar);
          
-        frame.setPreferredSize(new Dimension(270, 225));
+     
         frame.pack();
         frame.setLocationRelativeTo(null);
+        frame.setSize(400,300);
         frame.setVisible(true);
     }
 
@@ -162,15 +184,16 @@ public class HeadMainScreen extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HeadMainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HeadMainScreen().setVisible(true);
-            }
-        });
+        HeadMainScreen headMainScreen = new HeadMainScreen();
+                
+            
+        
     }
 
+   
+
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
