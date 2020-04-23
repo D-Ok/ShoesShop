@@ -89,8 +89,7 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
             new Object [][] {
                 {"1ір47", "Босоніжки сереблясті з танкеткою", "1200", "20", "1440"},
                 {"1is56", "Кросівки білі", "1600", "30", "2090"},
-                {"1id89", "Сандалі чоловічі з еко-шкіри", "1000", "15", "1150"},
-                {null, null, null, null, null},
+                {"1id89", "Сандалі чоловічі з еко-шкіри", "1000", "15", null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -358,7 +357,7 @@ public class ShopGoodsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed

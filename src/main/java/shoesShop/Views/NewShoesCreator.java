@@ -237,11 +237,7 @@ public class NewShoesCreator extends javax.swing.JFrame {
     private void crNewModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crNewModelActionPerformed
         if(existCat.getSelectedIndex()!=-1&&goodName.getText().length()!=0&&materials.getSelectedIndex()!=-1&&(sizes.getSelectedIndex()!=-1)&&(seasonButn.getSelectedIndex()!=-1)&&colors.getSelectedIndex()!=-1){
             
-            try {
-                Product.createMany(materials.getModel().getElementAt(materials.getSelectedIndex()).split(""), 30,30+sizes.getSelectedIndex(),goodName.getText());
-            } catch (ArgumentException ex) {
-               
-            }
+         
         }
         else{
             crNewModel.setEnabled(false);

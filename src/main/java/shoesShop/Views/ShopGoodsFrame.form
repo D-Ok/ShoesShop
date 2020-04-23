@@ -268,12 +268,11 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="5">
+              <Table columnCount="5" rowCount="4">
                 <Column editable="true" title="&#x41d;&#x43e;&#x43c;&#x435;&#x440;" type="java.lang.Object">
                   <Data value="1&#x456;&#x440;47"/>
                   <Data value="1is56"/>
                   <Data value="1id89"/>
-                  <Data value="null"/>
                   <Data value="null"/>
                 </Column>
                 <Column editable="true" title="&#x41d;&#x430;&#x437;&#x432;&#x430;" type="java.lang.Object">
@@ -281,13 +280,11 @@
                   <Data value="&#x41a;&#x440;&#x43e;&#x441;&#x456;&#x432;&#x43a;&#x438; &#x431;&#x456;&#x43b;&#x456;"/>
                   <Data value="&#x421;&#x430;&#x43d;&#x434;&#x430;&#x43b;&#x456; &#x447;&#x43e;&#x43b;&#x43e;&#x432;&#x456;&#x447;&#x456; &#x437; &#x435;&#x43a;&#x43e;-&#x448;&#x43a;&#x456;&#x440;&#x438;"/>
                   <Data value="null"/>
-                  <Data value="null"/>
                 </Column>
                 <Column editable="true" title="&#x426;&#x456;&#x43d;&#x430; &#x437;&#x430;&#x43a;&#x443;&#x43f;&#x456;&#x432;&#x43b;&#x456;" type="java.lang.Object">
                   <Data value="1200"/>
                   <Data value="1600"/>
                   <Data value="1000"/>
-                  <Data value="null"/>
                   <Data value="null"/>
                 </Column>
                 <Column editable="true" title="&#x41d;&#x430;&#x446;&#x456;&#x43d;&#x43a;&#x430;" type="java.lang.Object">
@@ -295,12 +292,10 @@
                   <Data value="30"/>
                   <Data value="15"/>
                   <Data value="null"/>
-                  <Data value="null"/>
                 </Column>
                 <Column editable="true" title="&#x426;&#x456;&#x43d;&#x430; &#x434;&#x43b;&#x44f; &#x43f;&#x440;&#x43e;&#x434;&#x430;&#x436;&#x443;" type="java.lang.Object">
                   <Data value="1440"/>
                   <Data value="2090"/>
-                  <Data value="1150"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>

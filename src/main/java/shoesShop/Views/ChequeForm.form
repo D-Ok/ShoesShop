@@ -38,7 +38,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel2" min="-2" pref="133" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="totalPrice" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="totalPrice" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jButton1" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
@@ -60,11 +60,11 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="totalPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="totalPrice" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,13 +82,49 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
-                <Column editable="true" title="&#x41d;&#x43e;&#x43c;&#x435;&#x440; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x443;" type="java.lang.String"/>
-                <Column editable="true" title="&#x41d;&#x430;&#x437;&#x432;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x443;" type="java.lang.String"/>
-                <Column editable="true" title="&#x420;&#x43e;&#x437;&#x43c;&#x456;&#x440;" type="java.lang.Short"/>
-                <Column editable="true" title="&#x41a;&#x456;&#x43b;&#x44c;&#x43a;&#x456;&#x441;&#x442;&#x44c;" type="java.lang.Short"/>
-                <Column editable="true" title="&#x426;&#x456;&#x43d;&#x430; &#x437;&#x430; &#x43e;&#x434;&#x438;&#x43d;&#x438;&#x446;&#x44e;" type="java.lang.Integer"/>
-                <Column editable="true" title="&#x421;&#x443;&#x43c;&#x430;&#x440;&#x43d;&#x430; &#x432;&#x430;&#x440;&#x442;&#x456;&#x441;&#x442;&#x44c;" type="java.lang.Integer"/>
+              <Table columnCount="6" rowCount="5">
+                <Column editable="true" title="&#x41d;&#x43e;&#x43c;&#x435;&#x440; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x443;" type="java.lang.String">
+                  <Data value="1s456"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x41d;&#x430;&#x437;&#x432;&#x430; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x443;" type="java.lang.String">
+                  <Data value="&#x427;&#x43e;&#x431;&#x43e;&#x442;&#x438; &#x440;&#x43e;&#x436;&#x435;&#x432;&#x456; &#x437; &#x435;&#x43a;&#x43e;-&#x448;&#x43a;&#x456;&#x440;&#x438;"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x420;&#x43e;&#x437;&#x43c;&#x456;&#x440;" type="java.lang.Short">
+                  <Data value="39"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x41a;&#x456;&#x43b;&#x44c;&#x43a;&#x456;&#x441;&#x442;&#x44c;" type="java.lang.Short">
+                  <Data value="2"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x426;&#x456;&#x43d;&#x430; &#x437;&#x430; &#x43e;&#x434;&#x438;&#x43d;&#x438;&#x446;&#x44e;" type="java.lang.Integer">
+                  <Data value="1500"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="&#x421;&#x443;&#x43c;&#x430;&#x440;&#x43d;&#x430; &#x432;&#x430;&#x440;&#x442;&#x456;&#x441;&#x442;&#x44c;" type="java.lang.Integer">
+                  <Data value="3000"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -142,7 +178,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="totalPrice">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x426;&#x456;&#x43d;&#x430;"/>
+        <Property name="text" type="java.lang.String" value="3000"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

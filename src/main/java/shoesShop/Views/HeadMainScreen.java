@@ -62,6 +62,14 @@ public class HeadMainScreen extends javax.swing.JFrame  {
 //        newMenu.add(producerItem);
           JMenuItem staffItem = new JMenuItem("Продавець");
         staffItem.setFont(font);
+        staffItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                     frame.setVisible(false);
+             NewWorkerFrame newWorkerFrame = new NewWorkerFrame();
+             newWorkerFrame.setVisible(true);
+            }
+         });
         newMenu.add(staffItem);
         JMenuItem openItem = new JMenuItem("");
         openItem.setFont(font);
