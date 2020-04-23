@@ -37,7 +37,19 @@ public class HeadMainScreen extends javax.swing.JFrame  {
         fileMenu.setFont(font);
         JMenu totalGoodsMenu = new JMenu("Всі товари ");
          totalGoodsMenu.setFont(font);
-       
+         JMenu saleMenu = new JMenu("Продажі");
+        saleMenu.setFont(font);
+        JMenuItem chequeCreator=new JMenuItem("Створити чек");
+        chequeCreator.setFont(font);
+        chequeCreator.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                ChequeForm cheq=new ChequeForm();
+                cheq.setVisible(true);
+            }
+        });
+        saleMenu.add(chequeCreator);
         JMenu newMenu = new JMenu("Додати новий запис про...");
         newMenu.setFont(font);
         fileMenu.add(newMenu);
@@ -139,6 +151,7 @@ public class HeadMainScreen extends javax.swing.JFrame  {
         totalGoodsMenu.add(statItem);
         menuBar.add(fileMenu);
                  menuBar.add(totalGoodsMenu);
+                 menuBar.add(saleMenu);
         frame.setJMenuBar(menuBar);
          
      
