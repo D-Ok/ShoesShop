@@ -47,7 +47,7 @@ public class Matherial {
 		return id;
 	}
 	
-	protected static boolean isUnique(int name) {
+	public static boolean isUnique(int name) {
 		String command = "SELECT * "
 				+ "FROM materials "
 				+ "WHERE id = "+name+"";
@@ -55,7 +55,7 @@ public class Matherial {
 		return DBConnector.isUnique(command);
 	}
 	
-	private boolean isNameUnique(String name) {
+	public static boolean isNameUnique(String name) {
 		String command = "SELECT * "
 				+ "FROM materials "
 				+ "WHERE name = '"+name+"'";
