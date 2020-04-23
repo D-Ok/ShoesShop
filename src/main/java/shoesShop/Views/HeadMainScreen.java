@@ -114,8 +114,16 @@ public class HeadMainScreen extends javax.swing.JFrame  {
         JMenuItem producerItemRefresh = new JMenuItem("Виробник");
         producerItemRefresh.setFont(font);
         refreshMenu.add(producerItemRefresh);
-          JMenuItem staffItemRefresh = new JMenuItem("Продавець");
+          JMenuItem staffItemRefresh = new JMenuItem("Персонал");
         staffItemRefresh.setFont(font);
+        staffItemRefresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false); 
+WorkersFrame work= new WorkersFrame();
+work.setVisible(true);
+            }
+        });
         refreshMenu.add(staffItemRefresh);
       JMenu infoMenu = new JMenu("Вивести дані про...");
         infoMenu.setFont(font);
