@@ -33,7 +33,7 @@ public class ChequeForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addRowBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,8 +67,13 @@ public class ChequeForm extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jButton1.setText("ОК");
 
-        jButton2.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
-        jButton2.setText("+");
+        addRowBtn.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        addRowBtn.setText("+");
+        addRowBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRowBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +82,7 @@ public class ChequeForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(addRowBtn)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(399, 399, 399)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -98,7 +103,7 @@ public class ChequeForm extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addRowBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -112,6 +117,12 @@ public class ChequeForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRowBtnActionPerformed
+          
+            CreateCheqRowFrame cheq=new CreateCheqRowFrame();
+            cheq.setVisible(true);
+    }//GEN-LAST:event_addRowBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,8 +161,8 @@ public class ChequeForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addRowBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
