@@ -179,9 +179,11 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
     private void sizeModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeModeActionPerformed
      if(sizeMode.getSelectedIndex()!=-1){
            numMod.setEnabled(true);
+           addToCheqBtn.setEnabled(true);
        }
      else{
         numMod.setEnabled(false);
+        addToCheqBtn.setEnabled(false);
      }
     }//GEN-LAST:event_sizeModeActionPerformed
 
@@ -190,7 +192,8 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addToCheqBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        
     }//GEN-LAST:event_backBtnActionPerformed
 
     /**
