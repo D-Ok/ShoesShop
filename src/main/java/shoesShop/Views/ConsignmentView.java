@@ -7,6 +7,7 @@ package shoesShop.Views;
 
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 import shoesShop.DB.Main;
 import shoesShop.DB.ProductModel;
@@ -18,20 +19,17 @@ import shoesShop.DB.Produser;
  */
 public class ConsignmentView extends javax.swing.JFrame {
 
-	String [] colors;
-	Integer [] sizes;
-	String [] products;
 	Integer [] produsers;
+	int rowNum = 0;
+	int totalSum = 0;
     /**
      * Creates new form ConsignmentView
      */
     public ConsignmentView() {
-    	colors = (String[]) Main.getAllColors().toArray();
-    	for(int i=26, j=0; i<47; i++, j++) {
-    		sizes[j] =i;
-    	}
-        products = (String[]) ProductModel.getAllId().toArray();
-    	produsers = (Integer[]) Produser.getAllId().toArray();
+    	LinkedList<Integer> i = Produser.getAllId(); 
+    	
+    	produsers = new Integer[i.size()];
+    	Produser.getAllId().toArray(produsers);
         initComponents();
     }
 
@@ -57,10 +55,11 @@ public class ConsignmentView extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(2147, 647));
-        setPreferredSize(new java.awt.Dimension(200, 539));
+        setPreferredSize(new java.awt.Dimension(664, 600));
 
         jComboBox1.setModel(new DefaultComboBoxModel(produsers));
         jComboBox1.setToolTipText("");
@@ -78,6 +77,11 @@ public class ConsignmentView extends javax.swing.JFrame {
         });
 
         jButton2.setText("Додати рядок");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                additionOfRow(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -125,6 +129,13 @@ public class ConsignmentView extends javax.swing.JFrame {
 
         jLabel4.setText("0.00");
 
+        jButton3.setText("Назад");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,7 +151,7 @@ public class ConsignmentView extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(161, 161, 161)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -157,7 +168,9 @@ public class ConsignmentView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton1)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2)))
@@ -167,7 +180,9 @@ public class ConsignmentView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -183,7 +198,6 @@ public class ConsignmentView extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -202,6 +216,41 @@ public class ConsignmentView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void additionOfRow(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_additionOfRow
+             //frame.setVisible(false);
+             CreateConsRow conFrame = new CreateConsRow();
+             conFrame.parent = this;
+             conFrame.setN_company((int) jComboBox1.getSelectedItem());
+             conFrame.setVisible(true); //To change body of generated methods, choose Tools | Templates.
+            
+    }//GEN-LAST:event_additionOfRow
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void addRowToTable(String n_model, String color, int fromSize, int toSize, int num) {
+
+    	ProductModel p = ProductModel.getModel(n_model);
+    	if(jTable1.getRowCount()<=rowNum) {
+    		((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{n_model, p.getName(), fromSize, toSize, color, num,
+    				p.getPrice_purchase(), p.getPrice_purchase()*num});
+    		
+    	}else {
+	    	jTable1.setValueAt(n_model, rowNum, 0);
+	    	jTable1.setValueAt(p.getName(), rowNum, 1);
+	    	jTable1.setValueAt(fromSize, rowNum, 2);
+	    	jTable1.setValueAt(toSize, rowNum, 3);
+	    	jTable1.setValueAt(color, rowNum, 4);
+	    	jTable1.setValueAt(num, rowNum, 5);
+	    	jTable1.setValueAt(p.getPrice_purchase(), rowNum, 6);
+	    	jTable1.setValueAt(p.getPrice_purchase()*num, rowNum, 7);
+    	}
+    	rowNum++;
+		totalSum+=(p.getPrice_purchase()*num);
+		jLabel4.setText(totalSum+"");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -240,6 +289,7 @@ public class ConsignmentView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
