@@ -326,7 +326,7 @@ public class ProductModel {
 		return getAll(command);
 	}
     
-    public static LinkedList<ProductModel> getAll(String command) { 
+    protected static LinkedList<ProductModel> getAll(String command) { 
     	LinkedList<ProductModel> res = new LinkedList<ProductModel>();
 	
 		try {
@@ -350,6 +350,23 @@ public class ProductModel {
 	    	}
 	    	statement.close();
 		} catch (SQLException | ArgumentException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+    
+    public static LinkedList<String> getAllId() { 
+    	LinkedList<String> res = new LinkedList<String>();
+    	String command = "SELECT n_model "
+				+ "FROM product_models ";
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		res.add(rs.getString("n_model"));
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return res;
@@ -397,7 +414,7 @@ public class ProductModel {
  		return getOne(command);
     }
     
-    public static ProductModel getOne(String command) { 
+    protected static ProductModel getOne(String command) { 
     	ProductModel res = new ProductModel();
 	
 		try {
@@ -424,7 +441,10 @@ public class ProductModel {
 		}
 		return res;
 	}
-
+/**
+ * 
+ * @return Наявна кількість кожної моделі на складі
+ */
     public static HashMap<String, Integer> getAllProductsNumber() {
     	HashMap<String, Integer> res = new HashMap<String, Integer>();
     	String command = "SELECT n_model, SUM(num) AS all_num" + 

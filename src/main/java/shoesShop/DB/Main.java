@@ -1,5 +1,8 @@
 package shoesShop.DB;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -60,6 +63,14 @@ public class Main {
 		return cons;
 	}
 	
+	public static void addRowToCons(int n_cons, String n_model, String color, int sizeFrom, int sizeTo, int num) throws ArgumentException {
+			for(int i=sizeFrom; i<=sizeTo; i++) {
+				if(Product.isUnique(i, color, n_model)) 
+					new Product(n_model, i, color);
+				ConsignmentRow r = new ConsignmentRow(Product.getId(n_model, color, i), n_cons, num);
+			}
+	}
+	
 	public static Cheque sellShoes(int n_employee, HashMap<Integer, Integer> shoes, String notes) throws ArgumentException {
 		Cheque cons = new Cheque(n_employee, notes);
 		
@@ -69,7 +80,23 @@ public class Main {
 		}
 		return cons;
 	}
+
 	
+	public static LinkedList<String> getAllColors() {
+		LinkedList<String> colors = new LinkedList<String>();
+		String command = "SELECT DISTINCT color FROM products ";
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		colors.add(rs.getString("color"));
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return colors;
+	}
 	
 	 
 }

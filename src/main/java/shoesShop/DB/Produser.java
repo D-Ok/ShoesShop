@@ -279,6 +279,29 @@ public class Produser {
  		return getOne(command);
  	}
      
+     
+     public static int getNProdOfModel(String n_model) {
+    	 String command = "SELECT DISTINCT produsers.n_company "
+    	 		+ "FROM `produsers` INNER JOIN `consignment_notes` ON produsers.n_company = consignment_notes.n_company"
+    	 		+ " INNER JOIN `consignment_note_rows` ON consignment_notes.n_cons = consignment_note_rows.n_cons"
+    	 		+ " INNER JOIN `products` ON products.id = consignment_note_rows.id_product"
+    	 		+ " INNER JOIN `product_models` ON product_models.n_model = products.n_model"
+  				+ " WHERE product_models.n_model = '"+n_model+"'";
+    	 int res =-1;
+    	 try {
+ 			Statement statement = db.connection.createStatement();
+ 	    	ResultSet rs = statement.executeQuery(command);
+ 	    	if(rs.next()) {
+ 	    		res = rs.getInt("produsers.n_company");
+ 	    	}
+ 	    	statement.close();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		}
+    	 
+  		return res;
+     }
+     
      public static Produser getProdOfModel(String n_model) {
     	 String command = "SELECT * "
     	 		+ "FROM `produsers` INNER JOIN `consignment_notes` ON produsers.n_company = consignment_notes.n_company"
@@ -323,6 +346,23 @@ public class Produser {
 	    		comp = rs.getInt("n_company");
 				num = rs.getInt("f_num");
 				res.put(comp, num);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+    public static LinkedList<Integer> getAllId() { 
+    	LinkedList<Integer> res = new LinkedList<Integer>();
+    	String command = "SELECT n_company "
+				+ "FROM produsers ";
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		res.add(rs.getInt("n_company"));
 	    	}
 	    	statement.close();
 		} catch (SQLException e) {
