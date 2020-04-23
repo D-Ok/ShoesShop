@@ -45,6 +45,18 @@ public class HeadMainScreen extends javax.swing.JFrame  {
         JMenuItem orderItem = new JMenuItem("Накладна");
         orderItem.setFont(font);
         newMenu.add(orderItem);
+        orderItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                  frame.setVisible(false);
+             ConsignmentView conFrame = new ConsignmentView();
+             conFrame.setVisible(true); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            private void setVisible(boolean b) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
          
         JMenuItem shoeItem = new JMenuItem("Модель взуття");
         shoeItem.setFont(font);
@@ -81,6 +93,7 @@ public class HeadMainScreen extends javax.swing.JFrame  {
         JMenuItem orderItemRefresh = new JMenuItem("Накладна");
         orderItemRefresh.setFont(font);
         refreshMenu.add(orderItemRefresh);
+ 
          
         JMenuItem shoeItemRefresh = new JMenuItem("Модель взуття");
         shoeItemRefresh.setFont(font);
