@@ -167,6 +167,9 @@
         <Property name="text" type="java.lang.String" value="&#x421;&#x442;&#x432;&#x43e;&#x440;&#x438;&#x442;&#x438; &#x43d;&#x430;&#x43a;&#x43b;&#x430;&#x434;&#x43d;&#x443; "/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="additionConsAndClose"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

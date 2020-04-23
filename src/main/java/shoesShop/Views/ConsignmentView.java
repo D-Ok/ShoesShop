@@ -7,11 +7,14 @@ package shoesShop.Views;
 
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import shoesShop.DB.Consignment;
 import shoesShop.DB.Main;
 import shoesShop.DB.ProductModel;
 import shoesShop.DB.Produser;
+import shoesShop.Exceptions.ArgumentException;
 
 /**
  *
@@ -89,6 +92,11 @@ public class ConsignmentView extends javax.swing.JFrame {
 
         jButton5.setText("Створити накладну ");
         jButton5.setToolTipText("");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                additionConsAndClose(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Накладна");
@@ -228,6 +236,32 @@ public class ConsignmentView extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void additionConsAndClose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_additionConsAndClose
+    	if(rowNum>0) {
+	        try {
+				Consignment c = new Consignment((int)jComboBox1.getSelectedItem(), jTextArea1.getText());
+				String n_model, color;
+				int sizeFrom, sizeTo, num;
+				for(int i=0; i<rowNum; i++) {
+					n_model = (String) jTable1.getValueAt(i, 0);
+					sizeFrom = (int) jTable1.getValueAt(i, 2);
+					sizeTo = (int) jTable1.getValueAt(i, 3);
+					color = (String) jTable1.getValueAt(i, 4);
+					num = (int) jTable1.getValueAt(i, 5);
+					Main.addRowToCons(c.getN_cons(), n_model, color, sizeFrom, sizeTo, num);
+					//TODO exit after addition
+				}
+			} catch (ArgumentException e) {
+				e.printStackTrace();
+	    		JOptionPane.showMessageDialog(this, 
+	      			  "Неправильно введені параметри", "Помилка", JOptionPane.ERROR_MESSAGE);
+			}
+    	} else {
+    		JOptionPane.showMessageDialog(this, 
+	      			  "Немає жодного рядка.", "Помилка", JOptionPane.ERROR_MESSAGE);
+    	}
+    }//GEN-LAST:event_additionConsAndClose
 
     public void addRowToTable(String n_model, String color, int fromSize, int toSize, int num) {
 
