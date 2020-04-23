@@ -35,5 +35,12 @@ public enum Category {
 		}
     	throw new ArgumentException("No Category with id = "+id);
     }
+    
+    public static Category getCategorynByName(String name) throws ArgumentException {
+    	for(int i=0; i<Category.values().length; i++) {
+			if(Category.values()[i].getName().equals(name)) return Category.values()[i];
+		}
+    	throw new ArgumentException("No Category with id = "+name);
+    }
 
 }

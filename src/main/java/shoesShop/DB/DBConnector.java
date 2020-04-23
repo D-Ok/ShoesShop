@@ -40,7 +40,7 @@ public class DBConnector {
 		
 		protected boolean update(String command) {
 			try {
-				Statement st = connection.createStatement();
+				Statement st = DBConnector.getInstance().connection.createStatement();
 				st.executeUpdate(command);
 				st.close();
 				return true;
@@ -118,10 +118,10 @@ public class DBConnector {
 			
 		   protected static int getIdByName(String name, String table) throws ArgumentException {
 			   String command = "SELECT * FROM `"+table+"`"
-						+ " WHERE name = '"+name+"'";
+						+ " WHERE name = '"+name+"' ";
 			   int id = -1;
 				try {
-					Statement statement = connection.createStatement();
+					Statement statement = DBConnector.getInstance().connection.createStatement();
 			    	ResultSet rs = statement.executeQuery(command);
 			    	if(rs.next()) {
 						id = rs.getInt("id");
@@ -135,10 +135,10 @@ public class DBConnector {
 		   
 		   protected static String getNameById(int id, String table) throws ArgumentException {
 			   String command = "SELECT * FROM `"+table+"`"
-						+ " WHERE id = '"+id+"'";
+						+ " WHERE id = "+id+"";
 			   String s = "";
 				try {
-					Statement statement = connection.createStatement();
+					Statement statement = DBConnector.getInstance().connection.createStatement();
 			    	ResultSet rs = statement.executeQuery(command);
 			    	if(rs.next()) {
 						s = rs.getString("name");
@@ -153,7 +153,7 @@ public class DBConnector {
 		   protected static boolean isUnique(String command) {
 			   boolean res = false;
 				try {
-					Statement statement = connection.createStatement();
+					Statement statement = DBConnector.getInstance().connection.createStatement();
 			    	ResultSet rs = statement.executeQuery(command);
 			    	res = !(rs.next()); 
 			    	statement.close();

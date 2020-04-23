@@ -195,6 +195,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x421;&#x442;&#x432;&#x43e;&#x440;&#x435;&#x43d;&#x43d;&#x44f; &#x43d;&#x43e;&#x432;&#x43e;&#x457; &#x43c;&#x43e;&#x434;&#x435;&#x43b;&#x456; &#x442;&#x43e;&#x432;&#x430;&#x440;&#x443;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crreationNewModel"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>

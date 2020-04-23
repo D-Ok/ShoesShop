@@ -33,4 +33,11 @@ public enum Season {
 			}
         	throw new ArgumentException("No Seasons with id = "+id);
         }
+        
+        public static Season getSeasonByName(String name) throws ArgumentException {
+        	for(int i=0; i<Season.values().length; i++) {
+				if(Season.values()[i].getName().equals(name)) return Season.values()[i];
+			}
+        	throw new ArgumentException("No Seasons with name = "+name);
+        }
 }

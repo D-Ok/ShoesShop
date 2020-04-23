@@ -5,16 +5,34 @@
  */
 package shoesShop.Views;
 
+import java.util.LinkedList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
+import shoesShop.DB.Product;
+import shoesShop.DB.ProductModel;
+
 /**
  *
  * @author Iryna Butenko
  */
 public class CreateCheqRowFrame extends javax.swing.JFrame {
 
+	private String [] models;
+	private String [] colors;
+	private Integer [] sizes;
+	protected ChequeForm parent;
+	
     /**
      * Creates new form CreateCheqRowFrame
      */
     public CreateCheqRowFrame() {
+    	LinkedList<ProductModel> p = ProductModel.getAllOnStock();
+    	models = new String [p.size()];
+    	for(int i=0; i<p.size(); i++) {
+    		models[i] = p.get(i).getN_model();
+    	}
         initComponents();
     }
 
@@ -37,13 +55,14 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         addToCheqBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jLabel1.setText("Оберіть модель:");
 
-        modNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        modNum.setModel(new DefaultComboBoxModel(models));
         modNum.setSelectedIndex(-1);
         modNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,50 +117,57 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Додання товару до чеку");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(modNum, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(colMod, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(modNum, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(sizeMode, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(numMod, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(colMod, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sizeMode, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(numMod)))))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(170, 170, 170)
                 .addComponent(addToCheqBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backBtn)
-                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backBtn)
+                    .addComponent(jLabel5))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,11 +184,13 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
 
     private void modNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modNumActionPerformed
        if(modNum.getSelectedIndex()!=-1){
+    	   LinkedList<String> c =Product.getAllColorsOfModelInStock((String)modNum.getSelectedItem());
+    	   colors = new String[c.size()];
+    	   colors = c.toArray(colors);
+    	   colMod.setModel(new DefaultComboBoxModel(colors));
            colMod.setEnabled(true);
        }
-       else{
-           colMod.setEnabled(false);
-       }
+       else colMod.setEnabled(false);
        colMod.setSelectedIndex(-1);
        sizeMode.setSelectedIndex(-1);
       
@@ -170,10 +198,14 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
 
     private void colModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colModActionPerformed
         if(colMod.getSelectedIndex()!=-1){
+           LinkedList<Integer> c = Product.getAllSizesOfModelInStock((String)modNum.getSelectedItem(), (String)colMod.getSelectedItem());
+      	   sizes = new Integer[c.size()];
+      	   sizes = c.toArray(sizes);
+      	   sizeMode.setModel(new DefaultComboBoxModel(sizes));
            sizeMode.setEnabled(true);
        }
         else sizeMode.setEnabled(false);
-         sizeMode.setSelectedIndex(-1);
+        sizeMode.setSelectedIndex(-1);
     }//GEN-LAST:event_colModActionPerformed
 
     private void sizeModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeModeActionPerformed
@@ -188,7 +220,22 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sizeModeActionPerformed
 
     private void addToCheqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCheqBtnActionPerformed
-        // TODO add your handling code here:
+    	String n_model = (String) modNum.getSelectedItem();
+    	String color = (String) colMod.getSelectedItem();
+    	int size = (int) sizeMode.getSelectedItem();
+    	int n = (int)numMod.getValue();
+        if(n>0) {
+          if(Product.get(n_model, color, size).getNumber()<n) {
+        	  JOptionPane.showMessageDialog(this, 
+	      			  "Недостатня кількість на складі", "Помилка", JOptionPane.ERROR_MESSAGE);
+          } else {
+        	parent.addRowToTable(n_model, color, size, (int) numMod.getValue());
+        	this.dispose();
+          }
+        } else {
+        	JOptionPane.showMessageDialog(this, 
+	      			  "Неправильно введені параметри", "Помилка", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_addToCheqBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -239,6 +286,7 @@ public class CreateCheqRowFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JComboBox<String> modNum;
     private javax.swing.JSpinner numMod;
     private javax.swing.JComboBox<String> sizeMode;

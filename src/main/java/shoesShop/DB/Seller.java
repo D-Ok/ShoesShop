@@ -81,7 +81,7 @@ public class Seller {
 			this.username = username;
 			
 		} else {
-			throw new ArgumentException("Something wrong with arguments(");
+			throw new ArgumentException("Something wrong with arguments");
 		}
 	};
 	

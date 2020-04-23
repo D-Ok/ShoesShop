@@ -45,6 +45,7 @@ public class CreateConsRow extends javax.swing.JFrame {
     public void setN_company(int n_company) {
 		this.n_company = n_company;
 		LinkedList<ProductModel> pr = Produser.getAllModel(n_company);
+		pr.addAll(ProductModel.getProductModelWithoutProduser());
     	products = new String[pr.size()];
     	
     	for(int i=0; i<pr.size(); i++) {
@@ -104,6 +105,11 @@ public class CreateConsRow extends javax.swing.JFrame {
         jComboBox4.setModel(new DefaultComboBoxModel(sizes));
 
         jButton1.setText("Створення нової моделі товару");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crreationNewModel(evt);
+            }
+        });
 
         jButton2.setText("Додати рядок");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -221,6 +227,11 @@ public class CreateConsRow extends javax.swing.JFrame {
       			  "Неправильно введені параметри", "Помилка", JOptionPane.ERROR_MESSAGE);
     	}
     }//GEN-LAST:event_additionToCons
+
+    private void crreationNewModel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crreationNewModel
+    	NewShoesCreator conFrame = new NewShoesCreator();
+        conFrame.setVisible(true);
+    }//GEN-LAST:event_crreationNewModel
 
     /**
      * @param args the command line arguments

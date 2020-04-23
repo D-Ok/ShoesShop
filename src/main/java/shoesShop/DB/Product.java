@@ -165,9 +165,65 @@ public class Product {
 		return result;
     }
 	
+	public static LinkedList<Integer> getAllSizesOfModel(String n_model, String color) {
+    	LinkedList<Integer> result = new LinkedList<Integer>();
+		String command = "SELECT DISTINCT size FROM products WHERE n_model = '"+n_model+"' AND color = '"+color+"' ";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		int s = rs.getInt("size");
+	    	    result.add(s);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+    }
+	
+	public static LinkedList<Integer> getAllSizesOfModelInStock(String n_model, String color) {
+    	LinkedList<Integer> result = new LinkedList<Integer>();
+		String command = "SELECT DISTINCT size FROM products "
+				+ "WHERE n_model = '"+n_model+"' AND color = '"+color+"' AND num > 0 ";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		int s = rs.getInt("size");
+	    	    result.add(s);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+    }
+	
 	public static LinkedList<String> getAllColorsOfModel(String n_model) {
     	LinkedList<String> result = new LinkedList<String>();
 		String command = "SELECT DISTINCT color FROM products WHERE n_model = '"+n_model+"'";
+		
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		String s = rs.getString("color");
+	    	    result.add(s);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+    }
+	
+	public static LinkedList<String> getAllColorsOfModelInStock(String n_model) {
+    	LinkedList<String> result = new LinkedList<String>();
+		String command = "SELECT DISTINCT color FROM products "
+				+ "WHERE n_model = '"+n_model+"' AND num > 0 ";
 		
 		try {
 			Statement statement = db.connection.createStatement();

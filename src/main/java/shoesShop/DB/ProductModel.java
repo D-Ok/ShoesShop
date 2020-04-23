@@ -498,6 +498,28 @@ public class ProductModel {
     	return h;
     }
     
+    public static LinkedList<ProductModel> getProductModelWithoutProduser(){
+    	String command = "SELECT DISTINCT * " + 
+    			"FROM product_models " + 
+    			" WHERE product_models.n_model NOT IN (" + 
+    			"  				SELECT n_model\r\n" + 
+    			"  				FROM `products` INNER JOIN consignment_note_rows ON products.id = consignment_note_rows.id_product " + 
+    			"  			   	INNER JOIN consignment_notes ON consignment_notes.n_cons = consignment_note_rows.n_cons " + 
+    			"  				INNER JOIN produsers ON produsers.n_company = consignment_notes.n_company)";
+    			
+    	return getAll(command);
+    }
+    
+    public static LinkedList<ProductModel> getAllOnStock(){
+    	String command = "SELECT *"+
+                " FROM product_models"+
+    			" WHERE  n_model IN (SELECT n_model "+ 
+    			"    		         FROM products"+
+    			"        	   	     WHERE num>0)";
+    			
+    	return getAll(command);
+    }
+    
     public static HashMap<ProductModel, Integer> filterOnStockByCategory(int category_id, int size){
     	String command = "SELECT *, (SELECT SUM(num)" + 
     			"           FROM products" + 
@@ -636,6 +658,8 @@ public class ProductModel {
     			"";
     	return filterBySizes(command);
     }
+    
+    
  
     /**
      * @return Повертає відсортовані моделі та рахує наявну кількість кожного розміру моделі
