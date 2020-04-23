@@ -135,7 +135,6 @@ public class NewShoesCreator extends javax.swing.JFrame {
             }
         });
 
-        for(String n:mater)materials.addItem(n);
         materials.setEditable(true);
         materials.setModel(new DefaultComboBoxModel(material));
 

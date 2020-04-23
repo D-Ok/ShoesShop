@@ -250,8 +250,9 @@ public class ConsignmentView extends javax.swing.JFrame {
 					color = (String) jTable1.getValueAt(i, 4);
 					num = (int) jTable1.getValueAt(i, 5);
 					Main.addRowToCons(c.getN_cons(), n_model, color, sizeFrom, sizeTo, num);
-					//TODO exit after addition
+					
 				}
+				//TODO exit after addition
 			} catch (ArgumentException e) {
 				e.printStackTrace();
 	    		JOptionPane.showMessageDialog(this, 

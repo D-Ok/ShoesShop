@@ -510,6 +510,16 @@ public class ProductModel {
     	return getAll(command);
     }
     
+    public static LinkedList<ProductModel> getAllOnStock(){
+    	String command = "SELECT *"+
+                " FROM product_models"+
+    			" WHERE  n_model IN (SELECT n_model "+ 
+    			"    		         FROM products"+
+    			"        	   	     WHERE num>0)";
+    			
+    	return getAll(command);
+    }
+    
     public static HashMap<ProductModel, Integer> filterOnStockByCategory(int category_id, int size){
     	String command = "SELECT *, (SELECT SUM(num)" + 
     			"           FROM products" + 
