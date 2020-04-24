@@ -44,6 +44,11 @@
             <version>13</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx-core</artifactId>
+            <version>1.6.2-2</version>
+        </dependency>
     </dependencies>
 
     	<build>

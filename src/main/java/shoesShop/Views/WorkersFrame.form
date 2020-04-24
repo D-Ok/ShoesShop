@@ -24,23 +24,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane1" min="-2" pref="581" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Component id="Delete" min="-2" pref="94" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-              <Component id="addWorker" min="-2" pref="106" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+              <Component id="Delete" min="-2" pref="107" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="saleInfoBtn" min="-2" pref="97" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <Component id="addWorker" min="-2" pref="115" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
               <Component id="backBtn" min="-2" pref="69" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+          <Component id="jScrollPane1" alignment="0" pref="591" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -51,7 +46,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Delete" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addWorker" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="saleInfoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="backBtn" min="-2" max="-2" attributes="0"/>
@@ -71,15 +65,27 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="6" rowCount="4">
                 <Column editable="false" title="&#x422;&#x430;&#x431;&#x435;&#x43b;&#x44c;&#x43d;&#x438;&#x439; &#x43d;&#x43e;&#x43c;&#x435;&#x440;" type="java.lang.String"/>
-                <Column editable="true" title="&#x41f;&#x406;&#x411;" type="java.lang.String"/>
-                <Column editable="true" title="&#x41b;&#x43e;&#x433;&#x456;&#x43d;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x41f;&#x440;&#x456;&#x437;&#x432;&#x438;&#x449;&#x435;" type="java.lang.String"/>
+                <Column editable="true" title="&#x406;&#x43c;&apos;&#x44f;" type="java.lang.String"/>
+                <Column editable="true" title="&#x41f;&#x43e;-&#x431;&#x430;&#x442;&#x44c;&#x43a;&#x43e;&#x432;&#x456;" type="java.lang.String"/>
+                <Column editable="true" title="&#x41b;&#x43e;&#x433;&#x456;&#x43d;" type="java.lang.String"/>
                 <Column editable="false" title="&#x41f;&#x43e;&#x441;&#x430;&#x434;&#x430;" type="java.lang.Byte"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -131,14 +137,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addWorkerActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="saleInfoBtn">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Yu Gothic UI" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x41f;&#x440;&#x43e;&#x434;&#x430;&#x436;&#x456;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">
       <Properties>
