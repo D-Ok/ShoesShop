@@ -7,9 +7,13 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
+
+import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 
 import shoesShop.Exceptions.ArgumentException;
 
@@ -120,6 +124,27 @@ public class Cheque {
 		return s;
 	}
 	
+	protected static LinkedList<Cheque> getAll(String command) {
+		LinkedList<Cheque> s = new LinkedList<Cheque>();
+
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	while(rs.next()) {
+	    		Cheque r = new Cheque();
+	    		r.n_employee = rs.getInt("n_employee");
+	    		r.n_cheque = rs.getInt("n_cheque");
+	    		r.notes = rs.getString("notes");
+	    		r.date = rs.getDate("ch_date");
+	    		s.add(r);
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
 	public static LinkedList<Cheque> getAll(){
 		String command = "SELECT * "
 				+ "FROM ch_price ";
@@ -138,6 +163,41 @@ public class Cheque {
 		int id = 1;
 		while(!isUnique(id)) id = r.nextInt(1000000000); 
 		return id;
+	}
+	
+	public static LinkedList<Cheque> getPeriod(LocalDate from, LocalDate to, int n_employee){
+		String command = "SELECT * " + 
+		        		" FROM ch_price " + 
+			        	" WHERE ch_date >= '"+from+"' AND ch_date <= '"+to+"'" + 
+			        	" AND n_employee = "+n_employee+" ";
+		
+		return getCons(command);
+	}
+	
+	public static LinkedList<Cheque> getPeriod(LocalDate from, LocalDate to){
+		String command = "SELECT * " + 
+		        		" FROM ch_price " + 
+			        	" WHERE ch_date >= '"+from+"' AND ch_date <= '"+to+"' ";
+		
+		return getCons(command);
+	}
+	
+	public int getNumOfPair() {
+		String command = "SELECT SUM(num) AS tot_n" + 
+				"		FROM cheque_rows" + 
+				"		WHERE n_cheque = "+n_cheque+" ";
+		int i = 0;
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	if(rs.next()) {
+	    		i = rs.getInt("tot_n");
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 	
 	public static boolean delete( int n_ch) {
