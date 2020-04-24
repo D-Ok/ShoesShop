@@ -229,7 +229,7 @@ public class Produser {
 				s.region = rs.getString("region");
 				s.street = rs.getString("street");
 				s.building = rs.getString("building");
-				s.office = rs.getInt("name");;
+				s.office = rs.getInt("office");
 				s.main_phone = rs.getString("main_phone");
 				s.second_phone = rs.getString("second_phone");
 				s.third_phone = rs.getString("third_phone");
@@ -258,7 +258,7 @@ public class Produser {
 				s.region = rs.getString("region");
 				s.street = rs.getString("street");
 				s.building = rs.getString("building");
-				s.office = rs.getInt("office");;
+				s.office = rs.getInt("office");
 				s.main_phone = rs.getString("main_phone");
 				s.second_phone = rs.getString("second_phone");
 				s.third_phone = rs.getString("third_phone");
