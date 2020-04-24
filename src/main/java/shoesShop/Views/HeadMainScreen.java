@@ -169,6 +169,14 @@ work.setVisible(true);
         });
         JMenuItem statItem= new JMenuItem("Подивитися статистику магазину");
         statItem.setFont(font);
+        statItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               frame.setVisible(false);
+              ShopStatFrame stats=new ShopStatFrame();
+              stats.setVisible(true);
+            }
+        });
         totalGoodsMenu.add(statItem);
         menuBar.add(fileMenu);
                  menuBar.add(totalGoodsMenu);
