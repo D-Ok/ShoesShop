@@ -95,6 +95,24 @@ public class Matherial {
 		return result;
     }
     
+    public static Matherial getOne(String name) {
+		String command = "SELECT * FROM materials WHERE name = '"+name+"' ";
+		Matherial m = new Matherial();
+		try {
+			Statement statement = db.connection.createStatement();
+	    	ResultSet rs = statement.executeQuery(command);
+	    	Seller s;
+	    	if(rs.next()) {
+	    		m.id = rs.getInt("id");
+	    		m.name = rs.getString("name");
+	    	}
+	    	statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return m;
+    }
+    
     @Override
 	public String toString() {
 		return "Matherial [name=" + name + "]";

@@ -5,18 +5,86 @@
  */
 package shoesShop.Views;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.LinkedList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import shoesShop.DB.Cheque;
+import shoesShop.DB.ProductModel;
+import shoesShop.DB.Seller;
+
 /**
  *
  * @author Iryna Butenko
  */
 public class ShopStatFrame extends javax.swing.JFrame {
 
+	private Integer [] sellerss;
+	private double total_sum;
+	private int tot_n;
     /**
      * Creates new form ShopStatFrame
      */
     public ShopStatFrame() {
+    	LinkedList<Seller> s = Seller.getAll();
+    	sellerss = new Integer[s.size()+1];
+    	for(int i=0; i<s.size(); i++) {
+    		sellerss[i] = s.get(i).getNum();
+    	}
+    
         initComponents();
+        sellers.setSelectedIndex(s.size());
+        fillTable(Cheque.getAll());
+//        from.setDate(new Date());
+//        to.setDate(new Date());
     }
+    
+    private void fillTable(LinkedList<Cheque> l) {
+    	
+    	 jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    	            new Object [][] {
+
+    	            },
+    	            new String [] {
+    	                "Номер чеку", "Сума", "Продавець", "Дата"
+    	            }
+    	        ) {
+    	            Class[] types = new Class [] {
+    	                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+    	            };
+    	            boolean[] canEdit = new boolean [] {
+    	                false, false, false, false
+    	            };
+
+    	            public Class getColumnClass(int columnIndex) {
+    	                return types [columnIndex];
+    	            }
+
+    	            public boolean isCellEditable(int rowIndex, int columnIndex) {
+    	                return canEdit [columnIndex];
+    	            }
+    	        });
+    	
+    	Cheque cur;
+    	total_sum = 0;
+    	tot_n = 0;
+    	for(int i =0; i<l.size(); i++) {
+    		cur = l.get(i);
+    		((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{cur.getN_cheque(),cur.getTotal_sum(), cur.getN_employee(), 
+    				cur.getDate()});
+    		total_sum += cur.getTotal_sum();
+    		tot_n +=cur.getNumOfPair();
+    		
+    	}
+    	sum.setText(total_sum+"");
+    	num.setText(tot_n+"");
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,29 +98,34 @@ public class ShopStatFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
-        dateStart = new org.jdesktop.swingx.JXDatePicker();
-        dateEnd = new org.jdesktop.swingx.JXDatePicker();
-        dateFormat = new javax.swing.JComboBox<>();
+        to = new org.jdesktop.swingx.JXDatePicker();
+        from = new org.jdesktop.swingx.JXDatePicker();
         showStatisticsBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        allTime = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        sum = new javax.swing.JLabel();
+        sellers = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        num = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Номер чеку", "Товари", "Кількість", "Сума", "Продавець", "Дата"
+                "Номер чеку", "Сума", "Продавець", "Дата"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -73,59 +146,113 @@ public class ShopStatFrame extends javax.swing.JFrame {
             }
         });
 
-        dateStart.setEnabled(false);
-
-        dateEnd.setEnabled(false);
-
-        dateFormat.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
-        dateFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Показати за весь час", "Показати за певний проміжок часу", "Показати за окремий день" }));
-        dateFormat.addActionListener(new java.awt.event.ActionListener() {
+        showStatisticsBtn.setFont(new java.awt.Font("Yu Gothic UI", 1, 10)); // NOI18N
+        showStatisticsBtn.setText("Чеки за період");
+        showStatisticsBtn.setToolTipText("");
+        showStatisticsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateFormatActionPerformed(evt);
+                showStatisticsBtnActionPerformed(evt);
             }
         });
 
-        showStatisticsBtn.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
-        showStatisticsBtn.setText("Вивести");
-        showStatisticsBtn.setToolTipText("");
+        jLabel1.setText("Загальна сума проданих товарів");
+
+        allTime.setText("вивести чеки за весь час");
+        allTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allTimeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("з");
+
+        jLabel3.setText("по");
+
+        sum.setText("0");
+
+        sellers.setModel(new DefaultComboBoxModel(sellerss));
+        sellers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellersActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Вивести чеки продавця");
+
+        jLabel6.setText("Загальна кількість проданих товарів");
+
+        num.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(dateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(allTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(showStatisticsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(sellers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(from, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(to, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(dateFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(243, 243, 243)
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(showStatisticsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sum, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(num, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(backBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(allTime)
+                        .addGap(22, 22, 22)
+                        .addComponent(showStatisticsBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sellers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(sum))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(showStatisticsBtn)
-                .addGap(18, 18, 18)
-                .addComponent(backBtn))
+                    .addComponent(jLabel6)
+                    .addComponent(num))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,21 +263,62 @@ public class ShopStatFrame extends javax.swing.JFrame {
         HeadMainScreen mainScr=new HeadMainScreen();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void dateFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFormatActionPerformed
-          switch (dateFormat.getSelectedIndex()) {
-            case 1:
-                dateStart.setEnabled(true);
-                break;
-            case 2:
-                dateStart.setEnabled(true);
-                dateEnd.setEnabled(true);
-                break;
-            default:
-                dateStart.setEnabled(false);
-                dateEnd.setEnabled(false);
-                break;
-    }//GEN-LAST:event_dateFormatActionPerformed
-    }
+    private void allTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allTimeActionPerformed
+        if(sellers.getSelectedIndex()==sellerss.length-1 || sellers.getSelectedIndex()==-1) {
+        	fillTable(Cheque.getAll());
+        } else {
+        	fillTable(Cheque.getAllBySeller((int) sellers.getSelectedItem()));
+        }
+        to = new org.jdesktop.swingx.JXDatePicker();
+        from = new org.jdesktop.swingx.JXDatePicker();
+    }//GEN-LAST:event_allTimeActionPerformed
+
+    private void showStatisticsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showStatisticsBtnActionPerformed
+    	if(from.getDate()!=null && to.getDate()!=null) {
+	    	LocalDate f = from.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	        LocalDate t = to.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    
+	        if(f.isEqual(t) || f.isBefore(t)) {
+	        	 if(sellers.getSelectedIndex()==sellerss.length-1 || sellers.getSelectedIndex()==-1) {
+	             	fillTable(Cheque.getPeriod(f, t));
+	             } else {
+	             	fillTable(Cheque.getPeriod(f, t, (int) sellers.getSelectedItem() ));
+	             }
+	        } else {
+	        	JOptionPane.showMessageDialog(this, 
+		      			  "Неправильно введена дата.", "Помилка", JOptionPane.ERROR_MESSAGE);
+	        }
+    	}else {
+        	JOptionPane.showMessageDialog(this, 
+	      			  "Неправильно введена дата.", "Помилка", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_showStatisticsBtnActionPerformed
+
+    private void sellersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellersActionPerformed
+
+    	if(from.getDate()!=null && to.getDate()!=null) {
+    		LocalDate f = from.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate t = to.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+            if(f.isEqual(t) || f.isBefore(t)) {
+            	 if(sellers.getSelectedIndex()==sellerss.length-1 || sellers.getSelectedIndex()==-1) {
+                 	fillTable(Cheque.getPeriod(f, t));
+                 } else {
+                 	fillTable(Cheque.getPeriod(f, t, (int) sellers.getSelectedItem() ));
+                 }
+            } else {
+            	JOptionPane.showMessageDialog(this, 
+    	      			  "Неправильно введена дата.", "Помилка", JOptionPane.ERROR_MESSAGE);
+            }
+    	} else {
+    		if(sellers.getSelectedIndex()==sellerss.length-1 || sellers.getSelectedIndex()==-1) {
+            	fillTable(Cheque.getAll());
+            } else {
+            	fillTable(Cheque.getAllBySeller((int) sellers.getSelectedItem()));
+            }
+    	}
+    }//GEN-LAST:event_sellersActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -187,12 +355,20 @@ public class ShopStatFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allTime;
     private javax.swing.JButton backBtn;
-    private org.jdesktop.swingx.JXDatePicker dateEnd;
-    private javax.swing.JComboBox<String> dateFormat;
-    private org.jdesktop.swingx.JXDatePicker dateStart;
+    private org.jdesktop.swingx.JXDatePicker from;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel num;
+    private javax.swing.JComboBox<String> sellers;
     private javax.swing.JButton showStatisticsBtn;
+    private javax.swing.JLabel sum;
+    private org.jdesktop.swingx.JXDatePicker to;
     // End of variables declaration//GEN-END:variables
 }

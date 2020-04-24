@@ -375,6 +375,8 @@ public class Seller {
 		return result;
 	}
 	
+
+	
 //	SELECT n_employee, SUM(num)
 //	FROM cheque_rows INNER JOIN cheques
 //	WHERE ch_date >= '2020-04-21' AND ch_date <= '2020-04-22'
